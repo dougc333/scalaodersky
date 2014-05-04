@@ -71,7 +71,7 @@ object Test2{
   //stop at 0 and add 1 to count, if not <0 dont add to count
   def comboTree(amount:Int,list:List[Int]):Int ={
 	def makeComboTree(amount:Int,list:List[Int]):Int={
-	  println("amount:"+ amount+ "list:"+list)
+	  //println("amount:"+ amount+ "list:"+list)
 	  if (amount==0) 1 
 	  else if(amount<0) 0
 	  else if(list.isEmpty) 0 
@@ -124,21 +124,21 @@ object Test2{
     if(list2.isEmpty){
       println("list2 empty")
     }
-    println(testNil(list2))
-    println(testNil(List("1","2")))
-    println("+++++++++++++++++++++++++")
+    //println(testNil(list2))
+    //println(testNil(List("1","2")))
+    //println("+++++++++++++++++++++++++")
     mutableList()
-    println("++++++++++++++++++++++++++ test paren matches")
+    //println("++++++++++++++++++++++++++ test paren matches")
     
-    println(testMatchParen(List('(','(','(','d','e','f')))
-    println(testMatchParen(List('a','b','c','d','e',')')))
-    println("++++++++++++++++++++++++++ combo tree")
-    println(comboTree(4,List(1,2)))
-    println("++++++++++++++++++++++++++ combo tree")
-    println(comboTree(300,List(5,10,20,50,100,200,500)))
-    println("++++++++++++++++++++++++++ combo tree")
-    println(comboTree(301,List(5,10,20,50,100,200,500)))
-    println("++++++++++++++++++++++++++ combo tree")
-    println(comboTree(300,List(500,5,50,100,20,200,10)))
+    //println(testMatchParen(List('(','(','(','d','e','f')))
+    //println(testMatchParen(List('a','b','c','d','e',')')))
+    //println("++++++++++++++++++++++++++ combo tree")
+    //println(comboTree(4,List(1,2)))
+    //println("++++++++++++++++++++++++++ combo tree")
+    //println(comboTree(300,List(5,10,20,50,100,200,500)))
+    //println("++++++++++++++++++++++++++ combo tree")
+    //println(comboTree(301,List(5,10,20,50,100,200,500)))
+    //println("++++++++++++++++++++++++++ combo tree")
+    //println(comboTree(300,List(500,5,50,100,20,200,10)))
   }
 }
