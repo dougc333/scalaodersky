@@ -1,0 +1,10 @@
+*.class
+*.log
+dist/*
+target/
+lib_managed/
+src_managed/
+submission/
+.project
+.classpath
+.settings
