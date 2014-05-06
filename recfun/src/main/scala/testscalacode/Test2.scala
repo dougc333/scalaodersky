@@ -44,12 +44,6 @@ object Test2{
     case _ =>println ("not nil");
   }
   
-  def testList(list:List[Any]):Unit = list match{
-    case Nil =>println("Nil list")
-//    case 3::4 => println("match 3-tail"); testList(4)
-  }
-  
-  
   //have to count the parenthesis, left add one, right subtract one. The count sould be 0 for a balanced set. 
   //other algos dont work, looking from ends to balance like string
   def testMatchParen(list:List[Char]):Boolean = {    
@@ -71,7 +65,7 @@ object Test2{
   //stop at 0 and add 1 to count, if not <0 dont add to count
   def comboTree(amount:Int,list:List[Int]):Int ={
 	def makeComboTree(amount:Int,list:List[Int]):Int={
-	  //println("amount:"+ amount+ "list:"+list)
+	  println("amount:"+ amount+ "list:"+list)
 	  if (amount==0) 1 
 	  else if(amount<0) 0
 	  else if(list.isEmpty) 0 
@@ -79,6 +73,7 @@ object Test2{
 	}
 	
 	makeComboTree(amount,list)
+	  
   }
   
   def testMatch2(list:List[Char]):Unit = list match{
@@ -110,8 +105,31 @@ object Test2{
     
   //}
   
+  def sum(list:List[Int]):Int={
+    def sumMe(list:List[Int],sum:Int):Int=list match{
+      case Nil=>0
+      case head::tail => head match{
+        case _ =>list.head+sumMe(list.tail,sum+list.head)
+      }	
+    }
+    sumMe(List(1,2,3,4),0)
+  }
   
+  def max(list:List[Int]):Int={
+    def maxMe(list:List[Int],max:Int):Int= list match{
+      case Nil=>max
+      case head::tail=>head match{
+        case _ => if(list.head>max) maxMe(list.tail,head) else maxMe(list.tail,max)
+      }
+    }
+    maxMe(list,0)
+  }
+  
+  /**
   def main(args:Array[String]):Unit={
+//	println(sum(List(1,2,3,4,5)))
+	println("max-------------------");
+	println(max(List(1,2,3,4)))
     println("asdfasdf")
     var foo="asdfasdf"
     testCase("0")
@@ -141,4 +159,5 @@ object Test2{
     //println("++++++++++++++++++++++++++ combo tree")
     //println(comboTree(300,List(500,5,50,100,20,200,10)))
   }
+*/
 }
