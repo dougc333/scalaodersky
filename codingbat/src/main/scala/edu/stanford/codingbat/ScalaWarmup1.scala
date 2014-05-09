@@ -1,24 +1,19 @@
 package edu.stanford.codingbat;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+class ScalaWarmup1{
 
-public class Warmup1{
+def main(args:Array[String]){
 
-
+}
 
 //The parameter weekday is true if it is a weekday, and the parameter vacation is true if we are on vacation. We sleep in if it is not a weekday or we're on vacation. Return true if we sleep in. 
 
 //sleepIn(false, false) → true
 //sleepIn(true, false) → false
 //sleepIn(false, true) → true  
-public boolean sleepIn(boolean weekday, boolean vacation) {
-  if(vacation || !weekday){  
-     return true;
-  }  
-  return false;
+def sleepIn(weekday:Boolean, vacation:Boolean):Boolean = {
+  if(vacation || !weekday) true  
+  false
 } 
 
 
@@ -27,7 +22,7 @@ public boolean sleepIn(boolean weekday, boolean vacation) {
 //monkeyTrouble(true, true) → true
 //monkeyTrouble(false, false) → true
 //monkeyTrouble(true, false) → false
-public boolean monkeyTrouble(boolean aSmile, boolean bSmile) {
+def monkeyTrouble(aSmile:Boolean, bSmile:Boolean):Boolean= {
   if( (aSmile && bSmile) || (!aSmile&&!bSmile)){
     return true;
   }
@@ -41,7 +36,7 @@ public boolean monkeyTrouble(boolean aSmile, boolean bSmile) {
 //sumDouble(1, 2) → 3
 //sumDouble(3, 2) → 5
 //sumDouble(2, 2) → 8
-public int sumDouble(int a, int b) {
+def sumDouble(a:Int, b:Int):Int= {
   if(a==b){ 
     return 2*(a+b);
   }
@@ -55,7 +50,7 @@ public int sumDouble(int a, int b) {
 //diff21(19) → 2
 //diff21(10) → 11
 //diff21(21) → 0
-public int diff21(int n) {
+defdiff21(n:Int):Int= {
   if(n>21){
     return 2*Math.abs(n-21);  
   }
@@ -68,7 +63,7 @@ public int diff21(int n) {
 //parrotTrouble(true, 6) → true
 //parrotTrouble(true, 7) → false
 //parrotTrouble(false, 6) → false
-public boolean parrotTrouble(boolean talking, int hour) {
+def parrotTrouble(talking:Boolean, hour:Int):Boolean {
   if((talking && (hour<7)) || (talking && (hour>20))){
     return true;
   }
@@ -82,7 +77,7 @@ public boolean parrotTrouble(boolean talking, int hour) {
 //makes10(9, 10) → true
 //makes10(9, 9) → false
 //makes10(1, 9) → true
-public boolean makes10(int a, int b) {
+def  makes10(a:Int, b:Int):Boolean= {
   if((a==10)||(b==10)||((a+b)==10)){
     return true;
   }
@@ -96,7 +91,7 @@ public boolean makes10(int a, int b) {
 //nearHundred(93) → true
 //nearHundred(90) → true
 //nearHundred(89) → false
-public boolean nearHundred(int n) {
+def  nearHundred(n:Int):Boolean= {
   if(Math.abs(n-100)<=10 || Math.abs(n-200)<=10){
     return true;
   }
@@ -109,8 +104,7 @@ public boolean nearHundred(int n) {
 //posNeg(1, -1, false) → true
 //posNeg(-1, 1, false) → true
 //posNeg(-4, -5, true) → true
-
-public boolean posNeg(int a, int b, boolean negative) {
+def posNeg(a:Int, b :Int, negative:Boolean):Boolean= {
   if((a<0 && b>0)||(a>0 && b<0)){
 	  return true;
   }
@@ -122,7 +116,7 @@ public boolean posNeg(int a, int b, boolean negative) {
 //notString("candy") → "not candy"
 //notString("x") → "not x"
 //notString("not bad") → "not bad"
-public String notString(String str) {
+def notString(str:String):String= {
 	if(str.startsWith("not")){
 		return str;
 	}
@@ -136,7 +130,7 @@ public String notString(String str) {
 //missingChar("kitten", 1) → "ktten"
 //missingChar("kitten", 0) → "itten"
 //missingChar("kitten", 4) → "kittn"
-public String missingChar(String str, int n) {
+def missingChar(str:String, n:Int):String= {
   return str.substring(0,n)+str.substring(n+1,str.length());
 }
 
@@ -147,8 +141,7 @@ public String missingChar(String str, int n) {
 //frontBack("code") → "eodc"
 //frontBack("a") → "a"
 //frontBack("ab") → "ba"
-
-public String frontBack(String str) {
+def frontBack(str:String):String= {
   if(str.length()>1){
 	  return str.charAt(str.length())+str.substring(1,str.length()-1)+str.charAt(0);
   }
@@ -161,8 +154,7 @@ public String frontBack(String str) {
 //front3("Java") → "JavJavJav"
 //front3("Chocolate") → "ChoChoCho"
 //front3("abc") → "abcabcabc"
-
-public String front3(String str) {
+def front3(str:String):String= {
   if(str.length()<3){
 	  return str;
   }
@@ -175,8 +167,7 @@ public String front3(String str) {
 //backAround("cat") → "tcatt"
 //backAround("Hello") → "oHelloo"
 //backAround("a") → "aaa"
-
-public String backAround(String str) {
+def backAround(str:String):String= {
   return str.charAt(str.length()-1)+str+str.charAt(str.length()-1);
 }
 
@@ -186,8 +177,7 @@ public String backAround(String str) {
 //or35(3) → true
 //or35(10) → true
 //or35(8) → false
-
-public boolean or35(int n) {
+def or35(n:Int):Boolean= {
   if(n%3==0 || n%5==0){
 	  return true;
   }
@@ -201,7 +191,7 @@ public boolean or35(int n) {
 //front22("kitten") → "kikittenki"
 //front22("Ha") → "HaHaHa"
 //front22("abc") → "ababcab"
-public String front22(String str) {
+def front22(str:String):String= {
   if(str.length()>=2){
 	  return str.substring(0,2)+str+str.substring(0,2);
   }
@@ -214,8 +204,7 @@ public String front22(String str) {
 //startHi("hi there") → true
 //startHi("hi") → true
 //startHi("hello hi") → false
-
-public boolean startHi(String str) {
+def startHi(str:String):Boolean= {
   if(str.startsWith("hi")){
 	  return true;
   }
@@ -229,7 +218,7 @@ public boolean startHi(String str) {
 //icyHot(120, -1) → true
 //icyHot(-1, 120) → true
 //icyHot(2, 120) → false
-public boolean icyHot(int temp1, int temp2) {
+def icyHot(temp1:Int, temp2:Int):Boolean= {
   if( (temp1<0 && temp2>100) || (temp2<0&& temp1>100)){
 	  return true;
   }
@@ -242,8 +231,8 @@ public boolean icyHot(int temp1, int temp2) {
 //in1020(12, 99) → true
 //in1020(21, 12) → true
 //in1020(8, 99) → false
-public boolean in1020(int a, int b) {
-  if((10<=a && a<=20)||(10<=b && b<=20)){
+def in1020(a:Int, b:Int):Boolean= {
+  if((10<=a<=20)||(10<b<20)){
 	  return true;
   }
   return false;
@@ -256,11 +245,8 @@ public boolean in1020(int a, int b) {
 //hasTeen(13, 20, 10) → true
 //hasTeen(20, 19, 10) → true
 //hasTeen(20, 10, 13) → true
-public boolean hasTeen(int a, int b, int c) {
-  if((a<=13 && a<=19)||(b<=13 && b<=19)||(c<=13 && c<=19)){
-	  return true;
-  }
-  return false;
+def hasTeen(a:Int, b:Int, c:Int):Boolean= {
+  
 }
 
 
@@ -270,11 +256,8 @@ public boolean hasTeen(int a, int b, int c) {
 //loneTeen(13, 99) → true
 //loneTeen(21, 19) → true
 //loneTeen(13, 13) → false
-public boolean loneTeen(int a, int b) {
-  if((a<13&&a<19)^(b<13&&b<19)){
-	  return true;
-  }
-  return false;
+def loneTeen(a:Int, b:Int):Boolean= {
+  
 }
 
 
@@ -283,13 +266,8 @@ public boolean loneTeen(int a, int b) {
 //delDel("adelbc") → "abc"
 //delDel("adelHello") → "aHello"
 //delDel("adedbc") → "adedbc"
-public String delDel(String str) {
-  if(str.length()>4){
-	  if(str.substring(1,3).equals("del")){
-		  return str.substring(0,1)+str.substring(4,str.length());
-	  }
-  }
-  return str;
+def delDel(str:String):String= {
+  
 }
 
 
@@ -299,15 +277,8 @@ public String delDel(String str) {
 //mixStart("mix snacks") → true
 //mixStart("pix snacks") → true
 //mixStart("piz snacks") → false
-public boolean mixStart(String str) {
- if(str.length()<3){
-	 return false;
- }
-  if(str.subSequence(1, 2).equals("ix")){
-	  return true;
-  }
- 
-  return  false;
+def mixStart(str:String):Boolean= {
+  
 }
 
 
@@ -317,20 +288,8 @@ public boolean mixStart(String str) {
 //startOz("ozymandias") → "oz"
 //startOz("bzoo") → "z"
 //startOz("oxx") → "o"
-
-public String startOz(String str) {
-  if(str.length()<2){
-	  return str;
-  }
-  StringBuilder sb = new StringBuilder();
-  if(str.charAt(0)=='o'){
-	  sb.append(str.charAt(0));
-  }
-  if(str.charAt(1)=='z'){
-	  sb.append(str.charAt(1));
-  }
-  sb.append(sb.substring(2,str.length()));
-  return  sb.toString();
+def startOz(str:String):String={
+  
 }
 
 //Given three int values, a b c, return the largest. 
@@ -338,15 +297,8 @@ public String startOz(String str) {
 //intMax(1, 2, 3) → 3
 //intMax(1, 3, 2) → 3
 //intMax(3, 2, 1) → 3
-
-public int intMax(int a, int b, int c) {
-	int al[] = new int[3];
-	al[0]=a;
-	al[1]=b;
-	al[2]=c;
-	
-	Arrays.sort(al);
-	return al[2];
+def intMax(a:Int, b:Int, c:Int):Int= {
+  
 }
 
 
@@ -355,14 +307,8 @@ public int intMax(int a, int b, int c) {
 //close10(8, 13) → 8
 //close10(13, 8) → 8
 //close10(13, 7) → 0
-
-public int close10(int a, int b) {
-  if(Math.abs(10-a)==Math.abs(10-b)){
-	  return 0;
-  }else if(Math.abs(10-a)<Math.abs(10-b)){
-	  return a;
-  }
-  return b;
+def close10(a:Int, b:Int):Int= {
+  
 }
 
 
@@ -371,15 +317,8 @@ public int close10(int a, int b) {
 //in3050(30, 31) → true
 //in3050(30, 41) → false
 //in3050(40, 50) → true
-
-
-public boolean in3050(int a, int b) {
-  if( (a<=40&&a>=30) && (b<=40&&b>=30)){
-	  return true;
-  }else if((a<=50&&a>=40) && (b<=50&&b>=40)){
-	  return true;
-  }
-  return false;
+def in3050(a:Int, b:Int):Boolean= {
+  
 }
 
 
@@ -389,29 +328,7 @@ public boolean in3050(int a, int b) {
 //max1020(11, 19) → 19
 //max1020(19, 11) → 19
 //max1020(11, 9) → 11
-
-public int max1020(int a, int b) {
-  if(a<=20 && a>=10){
-	  if(b<=20 && b>=10){
-		  if(a>b){
-			  return a;
-		  }
-		  return b;
-	  }else{
-		return a; 
-	  }
-  }
-  if(b<=20 && b>=10){
-	  if(a<=20 && a>=10){
-		  if(b>a){
-			  return b;
-		  }
-		  return a;
-	  }else{
-		return b; 
-	  }
-  }
-  return 0;
+def max1020(a:Int, :Intb):Int= {
   
 }
 
@@ -423,18 +340,8 @@ public int max1020(int a, int b) {
 //stringE("Hello") → true
 //stringE("Heelle") → true
 //stringE("Heelele") → false
-
-public boolean stringE(String str) {
-	int num=0;
-  for(int i=0;i<str.length();i++){
-	  if(str.charAt(i)=='e'){
-		  num++;
-	  }
-  }
-  if(1<num && num <3){
-	  return true;
-  }
-  return false;
+def stringE(str:String):Boolean {
+  
 }
 
 
@@ -445,11 +352,8 @@ public boolean stringE(String str) {
 //lastDigit(7, 17) → true
 //lastDigit(6, 17) → false
 //lastDigit(3, 113) → true
-public boolean lastDigit(int a, int b) {
-  if(a%10 == b%10){
-	  return true;
-  }
-  return false;
+def lastDigit(a:Int, b:Int):Boolean= {
+  
 }
 
 
@@ -459,12 +363,8 @@ public boolean lastDigit(int a, int b) {
 //endUp("Hello") → "HeLLO"
 //endUp("hi there") → "hi thERE"
 //endUp("hi") → "HI"
-
-public String endUp(String str) {
-	if(str.length()>3){
-		return str.substring(0,2).toUpperCase()+str.substring(2,str.length());
-	}
-	return str;
+def endUp(str:String):String= {
+  
 }
 
 
@@ -474,19 +374,8 @@ public String endUp(String str) {
 //everyNth("Miracle", 2) → "Mrce"
 //everyNth("abcdefg", 2) → "aceg"
 //everyNth("abcdefg", 3) → "adg"
-public String everyNth(String str, int n) {
-  if(str.length()<1){
-	  return str;
-  }
+def everyNth(str:String, n:Int):String= {
   
-  StringBuilder sb = new StringBuilder();
-	 
-  for(int i=0;i<str.length();i++){
-	  if(i%n==0){
-		  sb.append(str.charAt(i));
-	  }
-  }
-  return str.charAt(0)+sb.toString();
 }
 
 
