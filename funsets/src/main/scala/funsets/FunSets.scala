@@ -9,6 +9,8 @@ object FunSets {
   /**
    * We represent a set by its characteristic function, i.e.
    * its `contains` predicate.
+   * This set takes in Int types only. How to extend for Any? 
+   * This set is a mapping from Int to Boolean. Looks like a function
    */
   type Set = Int => Boolean
 
@@ -20,30 +22,41 @@ object FunSets {
   /**
    * Returns the set of the one given element.
    */
-  def singletonSet(elem: Int): Set = ???
+  def singletonSet(elem: Int): Set = {
+    (x=>if (x==elem) true else false)
+    // can remove and make only (x==elem)
+  }
 
   /**
    * Returns the union of the two given sets,
    * the sets of all elements that are in either `s` or `t`.
    */
-  def union(s: Set, t: Set): Set = ???
+  def union(s: Set, t: Set): Set = {
+    (x=>s(x:Int)||t(x:Int))
+  }
 
   /**
    * Returns the intersection of the two given sets,
    * the set of all elements that are both in `s` and `t`.
    */
-  def intersect(s: Set, t: Set): Set = ???
+  def intersect(s: Set, t: Set): Set = {
+    (x=>s(x)&&t(x))
+  }
 
   /**
    * Returns the difference of the two given sets,
    * the set of all elements of `s` that are not in `t`.
    */
-  def diff(s: Set, t: Set): Set = ???
+  def diff(s: Set, t: Set): Set = {
+    (x=>s(x) && !t(x))
+  }
 
   /**
    * Returns the subset of `s` for which `p` holds.
    */
-  def filter(s: Set, p: Int => Boolean): Set = ???
+  def filter(s: Set, p: Int => Boolean): Set = {
+    (x=>s(x:Int) && p(x:Int))
+  }
 
   /**
    * The bounds for `forall` and `exists` are +/- 1000.
@@ -55,23 +68,46 @@ object FunSets {
    */
   def forall(s: Set, p: Int => Boolean): Boolean = {
     def iter(a: Int): Boolean = {
-      if (???) ???
-      else if (???) ???
-      else iter(???)
+      //if (s(a) && p(a) || a>bound) true, needs variable
+      if (a>bound) true
+      else if (contains(s,a) && !p(a)) false
+      else iter(a+1)
     }
-    iter(???)
+    iter(-bound)
   }
 
   /**
    * Returns whether there exists a bounded integer within `s`
    * that satisfies `p`.
    */
-  def exists(s: Set, p: Int => Boolean): Boolean = ???
+  def exists(s: Set, p: Int => Boolean): Boolean = {
+     def iter(a: Int): Boolean = {
+//      println("processing:"+a+" s(a):"+s(a)+" p(a):"+p(a)+"s(a) && p(a)"+(s(a) && p(a)) )
+      if (a > bound) return false //went to end no false case
+      if (s(a) && p(a)) true 
+      else iter(a+1) 
+    }
+    //start from negative bound and increment up to bound
+    iter(-bound)
+  }
 
   /**
    * Returns a set transformed by applying `f` to each element of `s`.
    */
-  def map(s: Set, f: Int => Int): Set = ???
+  def map(s: Set, f: Int => Int): Set = {
+    //how to store this into the set?
+    //this isn't stored in the set, return a new set since the return type is Set
+    //loop from -bound to bound, test if contains, if so then apply f and add add using SingletonSet and union
+    var firstSet:Set=null
+    for( i:Int <- (-bound) to bound ){
+      //if(s(i)&&firstSet==null) {println("map found i:"+i+"f(i)"+f(i));firstSet=singletonSet(f(i));printSet(firstSet)} 
+      //else if(s(i)&& firstSet!=null) {println("found again:"+i+"f(i)"+f(i));firstSet=union(firstSet,singletonSet(f(i)));printSet(firstSet)}
+      if(s(i)&&firstSet==null) {firstSet=singletonSet(f(i))} 
+      else if(s(i)&& firstSet!=null) {firstSet=union(firstSet,singletonSet(f(i)))}
+      
+    }
+    return firstSet   
+  }
 
   /**
    * Displays the contents of a set
