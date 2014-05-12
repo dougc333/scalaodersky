@@ -79,7 +79,7 @@ object FunSets {
   /**
    * Returns whether there exists a bounded integer within `s`
    * that satisfies `p`.
-   */
+   
   def exists(s: Set, p: Int => Boolean): Boolean = {
      def iter(a: Int): Boolean = {
 //      println("processing:"+a+" s(a):"+s(a)+" p(a):"+p(a)+"s(a) && p(a)"+(s(a) && p(a)) )
@@ -90,11 +90,13 @@ object FunSets {
     //start from negative bound and increment up to bound
     iter(-bound)
   }
-
+*/
+  def exists(s: Set, p: Int => Boolean): Boolean = !forall(s, (x => !p(x)))
+  
   /**
    * Returns a set transformed by applying `f` to each element of `s`.
    */
-  def map(s: Set, f: Int => Int): Set = {
+  def map2(s: Set, f: Int => Int): Set = {
     //how to store this into the set?
     //this isn't stored in the set, return a new set since the return type is Set
     //loop from -bound to bound, test if contains, if so then apply f and add add using SingletonSet and union
@@ -109,6 +111,17 @@ object FunSets {
     return firstSet   
   }
 
+  
+  def map(s: Set, f: Int => Int): Set = {
+    def innerMap(s: Set, f: Int => Int,newSet:Set,a:Int):Set={
+      if (a==bound) newSet
+      else if (newSet==Nil && s(a)) innerMap(s,f,singletonSet(f(a)),a+1) 
+      else if(newSet!=Nil && s(a)) innerMap(s,f,union(newSet,singletonSet(f(a))),a+1)
+      else innerMap(s,f,newSet,a+1)
+    }
+    innerMap(s,f,Nil,-bound)
+  }
+  
   /**
    * Displays the contents of a set
    */

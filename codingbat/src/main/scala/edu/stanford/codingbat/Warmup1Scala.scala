@@ -12,6 +12,7 @@ def main(args:Array[String]){
 //sleepIn(false, true) → true
 def sleepIn(weekday:Boolean, vacation:Boolean):Boolean = {
   if(vacation || !weekday) true
+  else 
   false
 }
 
@@ -22,10 +23,9 @@ def sleepIn(weekday:Boolean, vacation:Boolean):Boolean = {
 //monkeyTrouble(false, false) → true
 //monkeyTrouble(true, false) → false
 def monkeyTrouble(aSmile:Boolean, bSmile:Boolean):Boolean= {
-  if( (aSmile && bSmile) || (!aSmile&&!bSmile)){
-    return true;
-  }
-  return false;
+  if( (aSmile && bSmile) || (!aSmile&&!bSmile)) true
+  else 
+    false
 }
 
 
@@ -36,10 +36,9 @@ def monkeyTrouble(aSmile:Boolean, bSmile:Boolean):Boolean= {
 //sumDouble(3, 2) → 5
 //sumDouble(2, 2) → 8
 def sumDouble(a:Int, b:Int):Int= {
-  if(a==b){
-    return 2*(a+b);
-  }
-  return a+b;
+  if(a==b) 2*(a+b)
+  else
+   a+b
 }
 
 
@@ -50,10 +49,8 @@ def sumDouble(a:Int, b:Int):Int= {
 //diff21(10) → 11
 //diff21(21) → 0
 defdiff21(n:Int):Int= {
-  if(n>21){
-    return 2*Math.abs(n-21);
-}
-  return Math.abs(n-21);
+  if(n>21) 2*Math.abs(n-21);
+  else Math.abs(n-21);
 }
 
 
