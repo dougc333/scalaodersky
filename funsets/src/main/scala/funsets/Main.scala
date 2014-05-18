@@ -27,7 +27,10 @@ object Main extends App {
   val newMutSet = map(mutSet,x=>x+1)
   printSet(newMutSet)
   print("test map2")
-  val map2Set = union(singletonSet(300),singletonSet(400))
-  val newMap2Set = map2(map2Set,x=>x+1)
-  printSet(newMap2Set)
+  val map2Set = union(singletonSet(1),singletonSet(3))
+  val map2Set1 = union(singletonSet(5),singletonSet(7))
+  val map2Set2 = union(map2Set,map2Set1)
+  val map2Set3 = union(map2Set2,singletonSet(1000))
+  printSet(map(map2Set3,x=>x-1))
+
 }

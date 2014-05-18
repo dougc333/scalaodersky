@@ -93,28 +93,10 @@ object FunSets {
 */
   def exists(s: Set, p: Int => Boolean): Boolean = !forall(s, (x => !p(x)))
   
-  /**
-   * Returns a set transformed by applying `f` to each element of `s`.
-   */
-  def map2(s: Set, f: Int => Int): Set = {
-    //how to store this into the set?
-    //this isn't stored in the set, return a new set since the return type is Set
-    //loop from -bound to bound, test if contains, if so then apply f and add add using SingletonSet and union
-    var firstSet:Set=null
-    for( i:Int <- (-bound) to bound ){
-      //if(s(i)&&firstSet==null) {println("map found i:"+i+"f(i)"+f(i));firstSet=singletonSet(f(i));printSet(firstSet)} 
-      //else if(s(i)&& firstSet!=null) {println("found again:"+i+"f(i)"+f(i));firstSet=union(firstSet,singletonSet(f(i)));printSet(firstSet)}
-      if(s(i)&&firstSet==null) {firstSet=singletonSet(f(i))} 
-      else if(s(i)&& firstSet!=null) {firstSet=union(firstSet,singletonSet(f(i)))}
-      
-    }
-    return firstSet   
-  }
-
   
   def map(s: Set, f: Int => Int): Set = {
     def innerMap(s: Set, f: Int => Int,newSet:Set,a:Int):Set={
-      if (a==bound) newSet
+      if (a>bound) newSet
       else if (newSet==Nil && s(a)) innerMap(s,f,singletonSet(f(a)),a+1) 
       else if(newSet!=Nil && s(a)) innerMap(s,f,union(newSet,singletonSet(f(a))),a+1)
       else innerMap(s,f,newSet,a+1)
