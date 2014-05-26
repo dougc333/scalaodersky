@@ -40,7 +40,7 @@ abstract class TweetSet {
    * in the original set for which the predicate is true.
    *
    * Question: Can we implment this method here, or should it remain abstract
-   * and be implemented in the subclasses?
+   * and be implemented in the subclasses? here is good but filterAcc is in subclasses and is where the impl is. 
    */
   def filter(p: Tweet => Boolean): TweetSet = filterAcc(p,new Empty)
 
@@ -112,7 +112,7 @@ abstract class TweetSet {
 class Empty extends TweetSet {
 
   def filterAcc(p: Tweet => Boolean, acc: TweetSet): TweetSet = acc
-   def union(that: TweetSet): TweetSet = that
+  def union(that: TweetSet): TweetSet = that
 
   def mostRetweeted: Tweet = throw new NoSuchElementException("Empty.mostRetweeted")
   def mostRetweetedAcc(acc: Tweet) = acc
@@ -136,11 +136,11 @@ class Empty extends TweetSet {
 class NonEmpty(elem: Tweet, left: TweetSet, right: TweetSet) extends TweetSet {
 
   def filterAcc(p: Tweet => Boolean, acc: TweetSet): TweetSet = {
-    right.filterAcc(p, left.filterAcc(p, if (p(elem)) acc.incl(elem) else acc))
+    right.filterAcc(p, left.filterAcc(p, if (p(elem)) acc.incl(elem) else acc))   
   }
 
   def union(that: TweetSet): TweetSet = {
-    left.union(right.union(that)).incl(elem)
+    left.union(right.union(that)).incl(elem)    
   }
 
   def mostRetweeted: Tweet = {
@@ -166,15 +166,18 @@ class NonEmpty(elem: Tweet, left: TweetSet, right: TweetSet) extends TweetSet {
     else true
 
   def incl(x: Tweet): TweetSet = {
-    if (x.text < elem.text) new NonEmpty(elem, left.incl(x), right)
-    else if (elem.text < x.text) new NonEmpty(elem, left, right.incl(x))
+    if (x.text < elem.text) {new NonEmpty(elem, left.incl(x), right)}
+    else if (elem.text < x.text) {new NonEmpty(elem, left, right.incl(x))}
     else this
   }
 
   def remove(tw: Tweet): TweetSet =
     if (tw.text < elem.text) new NonEmpty(elem, left.remove(tw), right)
     else if (elem.text < tw.text) new NonEmpty(elem, left, right.remove(tw))
-    else left.union(right)
+    else {
+      println("NonEmpty remove ")
+      left.union(right)
+    }
 
   def foreach(f: Tweet => Unit): Unit = {
     f(elem)
