@@ -25,15 +25,17 @@ object Huffman {
   case class Leaf(char: Char, weight: Int) extends CodeTree
 
 
-  def foo(){
-    println("asdf")
-  }
   // Part 1: Basics
   //getter methods using match
   def weight(tree: CodeTree): Int = tree match{
     case Fork( _, _, _, weight) => weight
     case Leaf(_, weight)       => weight
   }
+  
+  // we want to return weight, should be easy way to get to ivars
+  //def weight2(tree:CodeTree){
+  //  tree.weight 
+ // }
 
   def chars(tree: CodeTree): List[Char] = tree match{
    case Fork(_, _, chars, _) => chars
@@ -41,7 +43,7 @@ object Huffman {
   }
 
   def makeCodeTree(left: CodeTree, right: CodeTree) =
-    Fork(left, right, chars(left) ::: chars(right), weight(left) + weight(right))
+    Fork(left, right, chars(left) ++ chars(right), weight(left) + weight(right))
 
 
 
@@ -83,17 +85,14 @@ object Huffman {
    */
   //recursively traverse list,match and add pairs to list. 
   //if you see pair, increment count
-  //def times(chars: List[Char]): List[(Char, Int)] = {
-   //   def timesAcc(chars: List[Char], acc:Map[Char,Int]):List[(Char,Int)]=chars match{
-   //     case List()=>acc.toList
-       
-   //   }
-   //   timesAcc(chars,new Map())
- // }
+  def times(chars: List[Char]): List[(Char, Int)] = {
+    def timesAcc(chars:List[Char],acc:Map[Char,(Char,Int)]):Map[Char,(Char,Int)] = chars match {
+      case Nil => acc
+      case x::xs =>  if (acc contains x) {val tmpacc=acc.updated(x,(x,acc(x)._2+1));timesAcc(xs,tmpacc)} else {val tmpacc=acc+(x->(x,1));timesAcc(xs,tmpacc)};
+  }
+    timesAcc(chars,Map()).values.toList
+  }
   
-  
-  //what is this? 
-  //val pairTest : (Char,Int) = ('c',1)
   
   /**
    * Returns a list of `Leaf` nodes for a given frequency table `freqs`.
@@ -102,12 +101,26 @@ object Huffman {
    * head of the list should have the smallest weight), where the weight
    * of a leaf is the frequency of the character.
    */
-  def makeOrderedLeafList(freqs: List[(Char, Int)]): List[Leaf] = ???
+  def makeOrderedLeafList(freqs: List[(Char, Int)]): List[Leaf] = 
+    {
+    freqs.sortBy(Tuple2 => Tuple2._2).map(Tuple2 => Leaf(Tuple2._1, Tuple2._2))
+    }
+ 
 		  
   /**
    * Checks whether the list `trees` contains only one single code tree.
    */
-  def singleton(trees: List[CodeTree]): Boolean = ???
+  def singleton(trees: List[CodeTree]): Boolean = trees match{
+    case Nil=>false
+    case x::xs =>if (xs==Nil) return true else return false
+    case _ =>false
+  }
+  
+  def singleton2(trees:List[CodeTree]):Boolean ={
+    if (trees.length == 1) true
+    false
+  }
+  
 
   /**
    * The parameter `trees` of this function is a list of code trees ordered
@@ -121,8 +134,25 @@ object Huffman {
    * If `trees` is a list of less than two elements, that list should be returned
    * unchanged.
    */
-  def combine(trees: List[CodeTree]): List[CodeTree] = ???
+  def combine(trees: List[CodeTree]): List[CodeTree] = trees match{
+    case first::second::restofList => {
+      val ct = makeCodeTree(first,second)
+      val large = trees.filter(x=>weight(x)>weight(ct))
+      return ct::large
+    }
+    case _ => println("less than 2"); trees //if less than 2 return trees
+  }
 
+  def combine2(trees: List[CodeTree]): List[CodeTree] = {
+     if (trees.length>=2) {
+       val ct = makeCodeTree(trees.head,trees(2))
+       val large = trees.filter(x=>weight(x)>weight(ct))
+       return ct::large    
+     }
+     trees
+  }
+
+  
   /**
    * This function will be called in the following way:
    *
@@ -140,16 +170,23 @@ object Huffman {
    *    the example invocation. Also define the return type of the `until` function.
    *  - try to find sensible parameter names for `xxx`, `yyy` and `zzz`.
    */
-  def until(xxx: ???, yyy: ???)(zzz: ???): ??? = ???
-
+  def until(singleton:List[patmat.Huffman.CodeTree]=>Boolean, combiner:List[patmat.Huffman.CodeTree]=>List[patmat.Huffman.CodeTree])(zzz: List[patmat.Huffman.CodeTree]):CodeTree = singleton(zzz) match{
+    case true =>println(zzz);zzz.head
+    case false =>until(singleton,combiner)(combiner(zzz))   
+  }
+  
+  //keep calling combine on the char list till you get to a singleton tree
+  
+  
   /**
    * This function creates a code tree which is optimal to encode the text `chars`.
    *
    * The parameter `chars` is an arbitrary text. This function extracts the character
    * frequencies from that text and creates a code tree based on them.
    */
-  def createCodeTree(chars: List[Char]): CodeTree = ???
-
+  def createCodeTree(chars: List[Char]): CodeTree = {
+    until(singleton,combine)(makeOrderedLeafList(times(chars))) 
+  }
 
 
   // Part 3: Decoding
@@ -225,6 +262,6 @@ object Huffman {
    * and then uses it to perform the actual encoding.
    */
   def quickEncode(tree: CodeTree)(text: List[Char]): List[Bit] = ???
+  
 }
-
 
