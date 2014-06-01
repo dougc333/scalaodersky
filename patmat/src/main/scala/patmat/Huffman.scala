@@ -102,17 +102,15 @@ object Huffman {
    * head of the list should have the smallest weight), where the weight
    * of a leaf is the frequency of the character.
    */
-  def makeOrderedLeafList(freqs: List[(Char, Int)]): List[Leaf] = 
-    {
+  def makeOrderedLeafList(freqs: List[(Char, Int)]): List[Leaf] = {
     freqs.sortBy(Tuple2 => Tuple2._2).map(Tuple2 => Leaf(Tuple2._1, Tuple2._2))
-    }
+  }
  
 		  
   /**
    * Checks whether the list `trees` contains only one single code tree.
    */
   def singleton2(trees: List[CodeTree]): Boolean = trees match{
-    case Nil=>false
     case x::xs =>if (xs==Nil) return true else return false
     case _ =>false
   }
@@ -139,7 +137,13 @@ object Huffman {
   def combine(trees: List[CodeTree]): List[CodeTree] = trees match{
     case first::second::restofList => {
       val ct = makeCodeTree(first,second)
+      //not correct, check weights and add to either front or back. Build test cases for both
+      //how to insert in right place? can do a recursive traversal to insert
+      //model after insertion sort code
+//      if( weight(ct) < weight(restofList(0)))
       return ct::restofList
+//      else 
+    //    return (restofList++ct
     }
     case _ =>  trees //if less than 2 return trees
   }

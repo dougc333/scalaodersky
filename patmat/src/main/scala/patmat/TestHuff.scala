@@ -294,25 +294,18 @@ println("mappy values to list:"+mappy.values.toList)
  val nums = List(1,2,3,4)
  val diag = List(List(1,0,0),List(0,1,0),List(0,0,1))
  
-// def insertionSort(addMe:Int, list List[Int]):List[Int]=list match{
- //  case Nil=> Nil;
- //  case x::xs=> if(addMe<x) x:::x:::xs
- //  case _ insertionSort(addMe,xs)
-// }
- 
- def insert(x:Int,list:List[Int]):List[Int]={
-   def insertRecursive(addMe:Int, list:List[Int]):List[Int] = list match{
-   case Nil=>Nil
-   case x::xs if(addMe<x)=> addMe::x::xs 
-   case x::xs => x::insertRecursive(addMe,xs) 
-   } 
-   insertRecursive(x,list)
+
+ def insertInt(addMe:Int, list:List[Int]):List[Int]=list match{
+   case Nil=>List(addMe)
+   case x::xs=> if(addMe<x) addMe::xs else x::insertInt(addMe,xs) 
  }
  
  
- println("insert"+insert(1,List(2,3)))
- println("insert"+insert(4,List(3,5)))
- println("insert"+insert(20,List(4,10)))
+ println("-----------------------")
+ println("insert"+insertInt(1,List(2,3,4,5,6)))
+ println("insert"+insertInt(4,List(1,2,3,5,6,7,8)))
+println("insert"+insertInt(20,List(4,10,11,12,14)))
+ println("-----------------------")
  
  
  //should have stuck to vector interface. waste of time
@@ -382,12 +375,23 @@ def squareList2(xs:List[Int]):List[Int]={
  
  def combine(trees: List[CodeTree]): List[CodeTree] = trees match{
     case first::second::restofList => {
+      println("first/second/restoflist");
       val ct = makeCodeTree(first,second)
-      return ct::restofList
+      insertTree(ct,restofList)
     }
     case _ => println("less than 2"); trees //if less than 2 return trees
   }
 
+
+   
+  def insertTree(addMe: CodeTree, list: List[CodeTree]): List[CodeTree] = list match {
+      case List() => List(addMe)
+      case x :: xs => if (weight(addMe) <= weight(x)) addMe :: xs else x::insertTree(addMe, xs)
+  }
+  
+
+  
+  
  val ll4=List(1,2,3,4,5)
  println("drop test"+ll4.drop(2));
  
@@ -498,7 +502,8 @@ def squareList2(xs:List[Int]):List[Int]={
  
  
  
- 
+ //sort
+  println( List(5,3,4,100).sortBy(x=>x))
  
  
  
