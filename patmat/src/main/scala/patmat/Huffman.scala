@@ -28,10 +28,10 @@ object Huffman {
 
   // Part 1: Basics
   //if you do the below it is not good style or design
-  //def weight(tree: CodeTree): Int = tree match{
-  //  case Fork( _, _, _, weight) => weight
-  //  case Leaf(_, weight)       => weight
-  //}
+ // def weight(tree: CodeTree): Int = tree match{
+ //   case Fork( _, _, _, weight) => weight
+ //   case Leaf(_, weight)       => weight
+ // }
   
   def weight(tree: CodeTree): Int = {
     tree.weight
@@ -151,7 +151,7 @@ object Huffman {
 
  def combine1(trees: List[CodeTree]): List[CodeTree] = {
    if (trees.length>=2) {
-     val ct = makeCodeTree(trees.head,trees(2))
+     val ct = makeCodeTree(trees(0),trees(1))
      return ct::trees.drop(2)  
    }
    else 

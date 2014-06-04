@@ -84,6 +84,8 @@ def testMe2(chars:List[Char]):Unit={
   testMe2Acc(chars)
 }
 
+   
+   
 testMe2(charList)
 
 //add map to list to count num of times char appears
@@ -111,8 +113,9 @@ println("testMe4 a:"+a);
 
 
 testMe3(List('a','b','c','a'))
+
 //make pairs, w/o return type
-def testMe5(chars:List[Char]):Unit={
+def testMe5(chars:List[Char])={
   def testMe5Acc(chars:List[Char],acc:Map[Char,(Char,Int)]):Unit = chars match{
     case Nil => println("testMe5 empty list");
     case x::xs => println("testMe5 char:"+x);println("acc before insert:"+acc); if (acc contains x) {val tmpacc=acc.updated(x,(x,acc(x)._2+1));println("tmpacc+"+tmpacc);testMe5Acc(xs,tmpacc)} else {println("not contains adding");val tmpacc=acc+(x->(x,1));print("acc after add:"+tmpacc);testMe5Acc(xs,tmpacc)};
@@ -266,6 +269,9 @@ println("mappy values to list:"+mappy.values.toList)
 //    freqs.sortBy(Tuple2 => Tuple2._2)
 //    }
  val testList1 = List(('t', 2), ('e', 1), ('x', 3))
+ //
+ List(5,4,3,1,2).sortBy(x=>x)
+ //
  println(makeOrderedLeafList(testList1))
 //create a leaf out of each pair in the list; can do a fold;foldRight;foldLeft
  println(testList1.map(Tuple2=>new Leaf(Tuple2._1, Tuple2._2)))
@@ -418,7 +424,7 @@ def squareList2(xs:List[Int]):List[Int]={
  
  //until, keep on calling combiner until singleton is true. or keep calling combiner till 1 tree in list. combines 
  //first 2 elements on list till there is onely 1 tree
- def until(singleton:List[patmat.Huffman.CodeTree]=>Boolean, combiner:List[patmat.Huffman.CodeTree]=>List[patmat.Huffman.CodeTree])(zzz: List[patmat.Huffman.CodeTree]):CodeTree = singleton(zzz) match{
+ def until(singleton:List[CodeTree]=>Boolean, combiner:List[CodeTree]=>List[CodeTree])(zzz: List[CodeTree]):CodeTree = singleton(zzz) match{
     case true =>println(zzz);zzz.head
     case false =>until(singleton,combiner)(combiner(zzz))   
   }
