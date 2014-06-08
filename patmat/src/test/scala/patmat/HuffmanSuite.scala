@@ -73,11 +73,29 @@ class HuffmanSuite extends FunSuite {
   test("untilt2 w List chars"){
     new TestTrees{
       val u2 = until(singleton,combine)(makeOrderedLeafList(times(t3)))
-      println("u2:"+u2)
+    //  println("u2:"+u2)
       assert(u2==Fork(Leaf('d',4),Fork(Leaf('a',2),Leaf('b',3),List('a', 'b'),5),List('d', 'a', 'b'),9)) 
+    }
+  } 
+  
+ //tree in variable t2. not sure which one is correct
+  test("untilt2 w List chars w combine2"){
+    new TestTrees{
+      val u2 = until(singleton,combine2)(makeOrderedLeafList(times(t3)))
+  //    println("u2:"+u2)
+      assert(u2==Fork(Fork(Leaf('a',2),Leaf('b',3),List('a', 'b'),5),Leaf('d',4),List('a', 'b', 'd'),9)) 
     }
   }  
 
+  test("untilt2 w List chars w combine1"){
+    new TestTrees{
+      val u2 = until(singleton,combine1)(makeOrderedLeafList(times(t3)))
+      println("u2:"+u2)
+      assert(u2==Fork(Fork(Leaf('a',2),Leaf('b',3),List('a', 'b'),5),Leaf('d',4),List('a', 'b', 'd'),9)) 
+    }
+  }  
+
+  
   
   test("createCodeTree"){
     new TestTrees{
@@ -94,6 +112,14 @@ class HuffmanSuite extends FunSuite {
     val leaflist = List(Leaf('e', 1), Leaf('t', 2), Leaf('x', 4))
     assert(combine(leaflist) === List(Fork(Leaf('e',1),Leaf('t',2),List('e', 't'),3), Leaf('x',4)))
   }
+  
+  
+  test("test french secret"){
+    val decodeSecret = decodedSecret
+    //println("decodedSecret:"+decodedSecret);
+    assert (decodedSecret==List('h', 'u', 'f', 'f', 'm', 'a', 'n', 'e', 's', 't', 'c', 'o', 'o', 'l'))
+  }
+  
   
   test("decode and encode a very short text should be identity") {
     new TestTrees {

@@ -1,8 +1,10 @@
 package patmat
-import patmat._
+import patmat.Huffman._
+
 import Huffman.CodeTree
 import scala.collection.immutable.HashMap
-
+import patmat.Huffman.CodeTree
+import patmat.Huffman.chars
 
 //lecture notes: mutable map vs. immutable map removes
 //
@@ -15,8 +17,6 @@ import scala.collection.immutable.HashMap
 //}
 
 object TestHuff extends Application{
-  case class Fork(left: CodeTree, right: CodeTree, chars: List[Char], weight: Int) extends CodeTree
-  case class Leaf(char: Char, weight: Int) extends CodeTree
 
 //basic list, map ops 
   
@@ -157,7 +157,7 @@ println("testParams match test:"+testParams(0,0,0))
     case Leaf(_, weight)       => weight
   }
 
-  def chars(tree: CodeTree): List[Char] = tree match{
+  def chars2(tree: CodeTree): List[Char] = tree match{
    case Fork(_, _, chars, _) => chars
    case Leaf(char, _)        => List(char) 
   }
@@ -167,8 +167,8 @@ println("testParams match test:"+testParams(0,0,0))
 
  println("weight t2:"+weight(t2))
  println("weight t1:"+weight(t1))
- println("chars t2:"+chars(t2))
- println("chars t1:"+chars(t1))
+ println("chars t2:"+chars2(t2))
+ println("chars t1:"+chars2(t1))
  def string2Chars(str: String): List[Char] = str.toList
  
  println("string2Chars:"+string2Chars("hello, world"));
@@ -510,11 +510,118 @@ def squareList2(xs:List[Int]):List[Int]={
  
  //sort
   println( List(5,3,4,100).sortBy(x=>x))
+  println("testing encodeme");
+  
+  def encodeMe(tree:CodeTree,charList:List[Char]):List[Int]={
+    def encodeMeAcc(tree:CodeTree,testMe:Char,acc:List[Int]):List[Int]=tree match{
+      case Leaf(c:Char,w:Int) =>println("Leaf char:"+c+" weight:"+w);println("leaf acc:"+acc);acc
+      case Fork(left:CodeTree, right:CodeTree, charList:List[Char], weight:Int)=>{
+        println("Fork testMe:"+testMe+" chars(left):"+chars(left)+" chars(right):"+chars(right))
+        if(chars(left).contains(testMe)){
+          println("left!!! add 0 to list");
+         val addMe = acc++List(0)
+          println("addMe:"+addMe);
+          encodeMeAcc(left,testMe,addMe)
+        }else //if(chars(right).contains(testMe)){
+          println("rigth!!! add 1 to list");
+          val addMe = acc++List(1)
+          println("addMe:"+addMe);
+          encodeMeAcc(right,testMe,addMe)
+        }
+          
+     
+    }
+//     for(i<-charList){
+//       println("i:"+i)
+//       encodeMeAcc(tree,i,List[Int]())
+ //    }
+    charList.flatMap(x=>encodeMeAcc(tree,x,List[Int]()))
+  }
  
- 
- 
- 
- 
+//  encodeMe(Leaf('a',1),List('a','b'))
+ //append the a and b to a list 
+  val tree=Fork(Leaf('a',2),Leaf('b',3),List('a', 'b'),5)
+ // encodeMe(tree,List('a'))
+  println("=================================");
+  val em = encodeMe(tree,List('a','b'))
+  println("em:"+em);
+  println("================================")
+  
+  
+  def encode2(tree: CodeTree)(text: List[Char]): List[Bit] = {
+    def innerEncode(innerTree: CodeTree, char:Char, acc: List[Bit]): List[Bit] = innerTree match {
+      case Leaf(ch:Char, weight:Int)              => acc
+      case Fork(left:CodeTree, right:CodeTree, listChars:List[Char], weight:Int) =>
+        if (chars(left).contains(char)) {
+          innerEncode(left, char, acc ++ List(0))
+        } else {
+          innerEncode(right, char, acc ++ List(1))
+        }
+    }
+    text.flatMap(char => innerEncode(tree, char, List[Bit]()))
+  }
+  
+  val res = encode2(Leaf('a',2))(List('a'))
+  println("res:"+res);
+  
+  val ct = createCodeTree(List('a','a','b','b','b'))
+  println("ct:"+ct)
+  
+  val e = encode2(Fork(Leaf('a',2),Leaf('b',3),List('a', 'b'),5))( List('a'))
+  println("encode2 a: "+e) //0
+  val e1 = encode2(Fork(Leaf('a',2),Leaf('b',3),List('a', 'b'),5))( List('b'))
+  println("endoce 2 b:"+e1) //1
+  val e2 = encode2(Fork(Leaf('a',2),Leaf('b',3),List('a', 'b'),5))( List('a','b'))
+  println("endoce 2 ab:"+e2) //List(0,1)
+  
+  //decode, first step iterate through the list
+  def decodeA(tree: CodeTree, bits: List[Bit]): Unit = {
+    def decodeAcc(tree: CodeTree, bits: List[Bit]):Unit = tree match{
+      case Leaf(c:Char,w:Int) => println("leaf")
+      case Fork(left:CodeTree, right:CodeTree, _,_ )=> bits match{
+        case Nil=>println("Nil list")
+        case x::xs=>println("x:"+x+" xs:"+xs); decodeAcc(tree, xs) 
+        }
+      }
+    decodeAcc(tree,bits)
+    }
+    println("decode")
+    decodeA(Fork(Leaf('a',2),Leaf('b',3),List('a', 'b'),5),List(0,1,0,1,0,1)) 
+  
+    //decode, iterate through list, add accumulator  
+   def decodeB(ptree: CodeTree, bits: List[Bit]): List[Char] = {
+    def decodeAcc(tree: CodeTree, bits: List[Bit],acc:List[Char]):List[Char] = tree match{
+      case Leaf(c:Char,w:Int) => println("leaf c:"+c+" acc:"+acc ); decodeAcc(ptree,bits,List(c)++acc)
+      case Fork(left:CodeTree, right:CodeTree, list:List[Char], w:Int )=> bits match{
+        case Nil=>println("Nil"); acc
+        case x::xs=>println("x:"+x+" xs:"+xs); 
+        if(x==0) {
+          println("found 0 acc:"+acc) 
+          decodeAcc(left,xs,acc)
+        } 
+        else{
+          println("found 1 acc:"+acc)
+          decodeAcc(right,xs,acc)
+          } 
+        }
+      }
+    decodeAcc(tree,bits,List[Char]())
+    }
+    println("decode")
+    val b = decodeB(Fork(Leaf('a',2),Leaf('b',3),List('a', 'b'),5),List(0,1,0,1,0,1)) 
+    println("b:"+b);
+    
+    
+    //coding table do convert first
+    val c = convert(Fork(Leaf('a',2),Leaf('b',3),List('a', 'b'),5))
+    println("convert:"+c);
+    val c1 = convert(Leaf('a',2))
+    println("convert:"+c1);
+    println("t2:"+t2)
+    println("convert t2:"+convert(t2))
+    val t3 = Fork(Leaf('d',4),Fork(Leaf('a',2),Leaf('b',3),List('a', 'b'),5),List('d', 'a', 'b'),9)
+    println("t3"+t3);
+    println("convert t3:"+convert(t3));
 }
 
 
