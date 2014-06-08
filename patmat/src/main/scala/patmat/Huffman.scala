@@ -134,7 +134,20 @@ object Huffman {
    * If `trees` is a list of less than two elements, that list should be returned
    * unchanged.
    */
-  def combine(trees: List[CodeTree]): List[CodeTree] = trees match{
+  
+  def combine(trees: List[CodeTree]): List[CodeTree] = trees match {
+    case lowest :: secondLowest :: tail => {
+      val newTree = makeCodeTree(lowest, secondLowest)
+      tail.filter(tree => weight(tree) <= weight(newTree)) ::: newTree :: tail.filter(tree => weight(tree) > weight(newTree))
+    }
+    case _ => trees
+  }
+  
+  //I am not sure which is a correctly ordered tree for fork, t2 below which is given as a test case or
+  //Fork(Leaf('d',4),Fork(Leaf('a',2),Leaf('b',3),List('a', 'b'),5),List('d', 'a', 'b'),9))
+  //replicate order of  val t2 = Fork(Fork(Leaf('a',2), Leaf('b',3), List('a','b'), 5), Leaf('d',4), List('a','b','d'), 9)
+  //these are 2 completely different trees
+  def combine1(trees: List[CodeTree]): List[CodeTree] = trees match{
     case first::second::restofList => {
       val ct = makeCodeTree(first,second)
       //not correct, check weights and add to either front or back. Build test cases for both
@@ -149,7 +162,7 @@ object Huffman {
   }
 
 
- def combine1(trees: List[CodeTree]): List[CodeTree] = {
+ def combine2(trees: List[CodeTree]): List[CodeTree] = {
    if (trees.length>=2) {
      val ct = makeCodeTree(trees(0),trees(1))
      return ct::trees.drop(2)  
@@ -201,11 +214,11 @@ object Huffman {
    * This function decodes the bit sequence `bits` using the code tree `tree` and returns
    * the resulting list of characters.
    */
-  def decode(tree: CodeTree, bits: List[Bit]): List[Char] = {
+  def decodeA(tree: CodeTree, bits: List[Bit]): List[Char] = {
      def innerDecode(innerTree: CodeTree, bits: List[Bit], acc: List[Char]): List[Char] = innerTree match {
       case Leaf(char, _)           => innerDecode(tree, bits, char :: acc)
       case Fork(left, right, _, _) => bits match {
-        case List()       => acc
+        case List()  => acc
         case head :: tail => head match {
           case 0 => innerDecode(left, tail, acc)
           case 1 => innerDecode(right, tail, acc)
@@ -215,6 +228,8 @@ object Huffman {
     innerDecode(tree, bits, List()).reverse
   }
 
+  
+  
   /**
    * A Huffman coding tree for the French language.
    * Generated from the data given at
@@ -231,7 +246,7 @@ object Huffman {
   /**
    * Write a function that returns the decoded secret
    */
-  def decodedSecret: List[Char] = decode(frenchCode, secret)
+  def decodedSecret: List[Char] = decodeA(frenchCode, secret)
 
 
 

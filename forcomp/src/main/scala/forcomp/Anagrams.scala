@@ -35,8 +35,10 @@ object Anagrams {
    */
   def wordOccurrences(w: Word): Occurrences = {
     w.toLowerCase().groupBy(x=>x).map( { case (x, y) => (x, y.length) } ).toList.sortBy(x=>x._1)
-  }
+  } 
 
+  
+  
   /** Converts a sentence into its character occurrence list. */
   //list of words 
   def sentenceOccurrences(s: Sentence): Occurrences = wordOccurrences(s.mkString)
@@ -85,7 +87,24 @@ object Anagrams {
    *  Note that the order of the occurrence list subsets does not matter -- the subsets
    *  in the example above could have been displayed in some other order.
    */
-  def combinations(occurrences: Occurrences): List[Occurrences] = ???
+  def combinations(occurrences: Occurrences): List[Occurrences] = {
+    //this algorithm makes no sense to me. First create a set of occurrences with the occurrences iterating down to 1
+    // ('a',2) goes to a,2 and a,1
+    val s = scala.collection.mutable.Set.empty[(Char,Int)]
+    val s1=(Char,Int)
+    for(i <-occurrences){
+      println (occurrences)
+      for(j<-i._2 to 0 by -1){
+        println("adding:"+(i._1, j))
+        setAdd+=((i._1, j))
+      }
+      
+    }
+    
+    
+    
+    
+  }
 
   /** Subtracts occurrence list `y` from occurrence list `x`.
    * 
