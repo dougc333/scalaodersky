@@ -512,8 +512,8 @@ def squareList2(xs:List[Int]):List[Int]={
   println( List(5,3,4,100).sortBy(x=>x))
   println("testing encodeme");
   
-  def encodeMe(tree:CodeTree,charList:List[Char]):List[Int]={
-    def encodeMeAcc(tree:CodeTree,testMe:Char,acc:List[Int]):List[Int]=tree match{
+  def encodeMe(tree:CodeTree,charList:List[Char]):Unit={
+    def encodeMeAcc(tree:CodeTree,testMe:Char,acc:List[Int]):Unit=tree match{
       case Leaf(c:Char,w:Int) =>println("Leaf char:"+c+" weight:"+w);println("leaf acc:"+acc);acc
       case Fork(left:CodeTree, right:CodeTree, charList:List[Char], weight:Int)=>{
         println("Fork testMe:"+testMe+" chars(left):"+chars(left)+" chars(right):"+chars(right))
@@ -531,11 +531,11 @@ def squareList2(xs:List[Int]):List[Int]={
           
      
     }
-//     for(i<-charList){
-//       println("i:"+i)
-//       encodeMeAcc(tree,i,List[Int]())
- //    }
-    charList.flatMap(x=>encodeMeAcc(tree,x,List[Int]()))
+     for(i<-charList){
+       println("i:"+i)
+       encodeMeAcc(tree,i,List[Int]())
+     }
+//    charList.flatMap(x=>encodeMeAcc(tree,x,List[Int]()))
   }
  
 //  encodeMe(Leaf('a',1),List('a','b'))
@@ -622,6 +622,8 @@ def squareList2(xs:List[Int]):List[Int]={
     val t3 = Fork(Leaf('d',4),Fork(Leaf('a',2),Leaf('b',3),List('a', 'b'),5),List('d', 'a', 'b'),9)
     println("t3"+t3);
     println("convert t3:"+convert(t3));
+    
+    
 }
 
 

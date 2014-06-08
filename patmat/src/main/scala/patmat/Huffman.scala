@@ -214,18 +214,18 @@ object Huffman {
    * This function decodes the bit sequence `bits` using the code tree `tree` and returns
    * the resulting list of characters.
    */
-  def decodeA(tree: CodeTree, bits: List[Bit]): List[Char] = {
-     def innerDecode(innerTree: CodeTree, bits: List[Bit], acc: List[Char]): List[Char] = innerTree match {
-      case Leaf(char, _)           => innerDecode(tree, bits, char :: acc)
+  def decode(tree: CodeTree, bits: List[Bit]): List[Char] = {
+     def decodeAcc(tree: CodeTree, bits: List[Bit], acc: List[Char]): List[Char] = tree match {
+      case Leaf(char, _)           => decodeAcc(tree, bits, char :: acc)
       case Fork(left, right, _, _) => bits match {
         case List()  => acc
         case head :: tail => head match {
-          case 0 => innerDecode(left, tail, acc)
-          case 1 => innerDecode(right, tail, acc)
+          case 0 => decodeAcc(left, tail, acc)
+          case 1 => decodeAcc(right, tail, acc)
         }
       }
     }
-    innerDecode(tree, bits, List()).reverse
+    decodeAcc(tree, bits, List()).reverse
   }
 
   
@@ -246,7 +246,7 @@ object Huffman {
   /**
    * Write a function that returns the decoded secret
    */
-  def decodedSecret: List[Char] = decodeA(frenchCode, secret)
+  def decodedSecret: List[Char] = decode(frenchCode, secret)
 
 
 
