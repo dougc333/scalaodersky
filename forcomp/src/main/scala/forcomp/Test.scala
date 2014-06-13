@@ -1,26 +1,13 @@
 package forcomp
 
+import forcomp.Anagrams._
+
 object Test extends Application {
- val s = "asdf"
- val m= Map[Char,Int]()
- type Occurrences = List[(Char, Int)]
- val input = Map('a'->1,'b'->2,'c'->3)
- val output = input.map{ case(k,v) => (k, v) }.toList
- println(output)
- println(input.toList)
- val makeList = input.toList
- println(makeList)
- "hello".count( _ =='h')
  
- println("AADSDSASDFGSDF".toLowerCase())
- println("AADSDSASDFGSDF".toLowerCase().toList)
- //if y is not a list or doesnt support length do we get an exception
- //no cause it wouldnt compile, would get the red mark (Test)
  println("AADSDSASDFGSDF".toLowerCase().toList.groupBy(x=>x).map( { case (x, y) => (x, y.length) } )
  )
  val temp = "AADSDSASDFGSDF".toLowerCase().toList.groupBy(x=>x).map( { case (x, y) => (x, y.length) } ).toList
  println(temp.sortBy(x=>x._1))
- //what does x=x really mean?  This is not identity
  
  
  //digression.. how to tokenize a string into a list in scala? 
@@ -30,6 +17,7 @@ object Test extends Application {
  while (ab.hasMoreTokens()) println(ab.nextToken()) //not scalish... how to fix? 
  val tokenizeMe = a.split(" ").toList
  println("tokenizeMe:"+tokenizeMe)
+
  //more string tests
  println("asdfsadfasdf".groupBy(x=>x).map({case(x,y)=>(x,y.length)}).toList.sortBy(x=>x._1))
  println("remove spaces:"+a.replaceAll(" ",""))
@@ -50,7 +38,7 @@ object Test extends Application {
 
  val dictionary: List[Word] = loadDictionary
  println(dictionary.head)
- def wordOccurrences(w: Word): Occurrences = {
+ def wordOccurrencesA(w: Word): Occurrences = {
     w.toLowerCase().groupBy(x=>x).map( { case (x, y) => (x, y.length) } ).toList.sortBy(x=>x._1)
  }
 
@@ -70,8 +58,9 @@ object Test extends Application {
   val list2 = List(6,7,8,9)
   val seq1 = (1 to 4)
   val seq2 = (6 to 9)
+  //create dot product 
   val seqprod = seq1.flatMap(x=>seq2.map(y=>(x,y)))
-  println(seqprod); //this is better than java
+  println("seqprod:"+seqprod); //this is better than java
   
   //scalar product 2 vectors
   
@@ -89,12 +78,6 @@ object Test extends Application {
 //  .map(k => (k.pageSizeBytes, 1))
 //  .reduceByKey( (a,b) => (a._1 + b._1, a._2 + b._2)
 //  .mapValues( v => (v._1 / v._2) )
-
- 
- 
- 
- 
- 
   
   
 }

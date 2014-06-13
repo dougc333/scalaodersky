@@ -19,7 +19,7 @@ object subset {;import org.scalaide.worksheet.runtime.library.WorksheetSupport._
   
   
   
-  List(1,2).map(Map(1->"aaa",2->"bbb"));System.out.println("""res1: List[String] = """ + $show(res$1));$skip(1511); 
+  List(1,2).map(Map(1->"aaa",2->"bbb"));System.out.println("""res1: List[String] = """ + $show(res$1));$skip(1442); 
   /*  Example: the subsets of the occurrence list `List(('a', 2), ('b', 2))` are:
    *
    *    List(
@@ -35,17 +35,16 @@ object subset {;import org.scalaide.worksheet.runtime.library.WorksheetSupport._
    * List(a,2)(a,1)(b,2),(b,1)
    *
    *((a,1),(a,1))
-                                                  | ((a,1),(b,1))
-                                                  | ((a,1),(b,2))
-                                                  | ((a,2))
-                                                  | ((a,2),(b,1))
-                                                  | ((a,2),(b,2))
-                                                  | ((b,1),(a,1))
-                                                  | ((b,1),(a,2))
-                                                  | ((b,1),(b,1))
-                                                  | ((b,2),(a,1))
-                                                  | ((b,2),(a,2))
-                                                  | ((b,2),(b,2))
+                                                  * ((a,1),(b,1))
+                                                  * ((a,1),(b,2))
+                                                  * ((a,2))
+                                                  * ((a,2),(b,1))
+                                                  * ((a,2),(b,2))
+                                                  *((b,1),(a,2))
+                                                  *(b,1),(b,1))
+                                                  * ((b,2),(a,1))
+                                                  * ((b,2),(a,2))
+                                                  * ((b,2),(b,2))
                                                   //subtract the sets with generated elements. doesnt make sense why. Technically you cant have any words that
                                                   //have aa twice then a once would be aaa. So he removes those. Or bb + b. Not sure what his algorithm is
    *

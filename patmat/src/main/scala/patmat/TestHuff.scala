@@ -622,7 +622,13 @@ def squareList2(xs:List[Int]):List[Int]={
     val t3 = Fork(Leaf('d',4),Fork(Leaf('a',2),Leaf('b',3),List('a', 'b'),5),List('d', 'a', 'b'),9)
     println("t3"+t3);
     println("convert t3:"+convert(t3));
+    def convertA(tree: CodeTree):Unit={
+      println("chars tree:"+chars(tree))
+      val l  = chars(tree);
+      //l.foldLeft()
+    }
     
+    convertA(Fork(Leaf('a',2),Leaf('b',3),List('a', 'b'),5))
     
 }
 

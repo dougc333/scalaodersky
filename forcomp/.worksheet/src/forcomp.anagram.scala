@@ -8,12 +8,12 @@ object anagram {;import org.scalaide.worksheet.runtime.library.WorksheetSupport.
 
   /** A sentence is a `List` of words. */
   type Sentence = List[Word]
-  type Occurrences = List[(Char, Int)];$skip(371); 
+  type Occurrences = List[(Char, Int)];$skip(833); val res$0 = 
 
   /** The dictionary is simply a sequence of words.
    *  It is predefined and obtained as a sequence using the utility method `loadDictionary`.
    */
-  val dictionary: List[Word] = loadDictionary;System.out.println("""dictionary  : List[forcomp.anagram.Word] = """ + $show(dictionary ));$skip(460); val res$0 = 
+//  val dictionary: List[Word] = loadDictionary
   //  def wordOccurrences(w: Word): Occurrences = {
   //  w.toLowerCase().groupBy(x=>x).map( { case (x, y) => (x, y.length) } ).toList.sortBy(x=>x._1)
   //}

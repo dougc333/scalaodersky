@@ -154,9 +154,7 @@ class HuffmanSuite extends FunSuite {
       assert(c1===List(('d',List(1)), ('b',List(0, 1)), ('a',List(0, 0))))
     }
   }
-  
-  
-  
+   
   test("decode and encode a very short text should be identity") {
     new TestTrees {
       assert(decode(t1, encode(t1)("ab".toList)) === "ab".toList)

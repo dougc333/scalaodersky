@@ -1,0 +1,4 @@
+deprecation=true
+eclipse.preferences.version=1
+feature=true
+scala.compiler.useProjectSettings=true
