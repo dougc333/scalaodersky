@@ -51,9 +51,14 @@ trait StringParserTerrain extends GameDef {
    * The resulting function should return `true` if the position `pos` is
    * a valid position (not a '-' character) inside the terrain described
    * by `levelVector`.
+   * 
+   * cant return true/false have to return a terrain function. This is new
    */
-  def terrainFunction(levelVector: Vector[Vector[Char]]): Pos => Boolean = {
-    
+  def terrainFunction(levelVector: Vector[Vector[Char]]): (Pos => Boolean) ={
+    //if(levelVector(pos.x)(pos.y)!='-' && pos.x >0 && pos.y>0 && pos.x<levelVector.size && pos.y<levelVector(x).size) true 
+    //else 
+    //  false
+    pos=>(levelVector(pos.x)(pos.y)!='-')&&(pos.x >0)&&(pos.y>0)&&(pos.x<levelVector.size)&&(pos.y<levelVector(pos.x).size)
   }
 
   /**
@@ -64,8 +69,10 @@ trait StringParserTerrain extends GameDef {
    * Hint: you can use the functions `indexWhere` and / or `indexOf` of the
    * `Vector` class
    */
-  def findChar(c: Char, levelVector: Vector[Vector[Char]]): Pos = {
-    
+  def findChar(c: Char, levelVector: Vector[Vector[Char]]): Pos ={
+    val x = levelVector.indexWhere(x=>x.contains(c))
+    val y = levelVector(x).indexOf(c)
+    Pos(x,y)
   }
 
   private lazy val vector: Vector[Vector[Char]] =

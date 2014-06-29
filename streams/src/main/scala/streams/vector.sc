@@ -1,5 +1,6 @@
 package streams
-import streams.GameDef
+import common._
+
 
 object vector {
   println("Welcome to the Scala worksheet")       //> Welcome to the Scala worksheet
@@ -23,29 +24,53 @@ object vector {
   
   
   //have to add the () before => so we can access he pos value
-  def foo(v:Vector[Vector[Int]]):Pos1=>Boolean=(pos:Pos1)=>{
-    if(v(pos.x)(pos.y)==1) true
+  def foo(v:Vector[Vector[Char]]):Pos1=>Boolean=(pos:Pos1)=>{
+    print("pos.x"+pos.x+"pos.y:"+pos.y+"map:"+v(pos.x)(pos.y))
+    if ( v(pos.x)(pos.y)!='T') {print("asdf");true}
     else
      false
   
-  }                                               //> foo: (v: Vector[Vector[Int]])streams.vector.Pos1 => Boolean
+  }                                               //> foo: (v: Vector[Vector[Char]])streams.vector.Pos1 => Boolean
   
-  
+    
+val vec=Vector(Vector('S', 'T'), Vector('o', 'o'), Vector('o', 'o'))
+                                                  //> vec  : scala.collection.immutable.Vector[scala.collection.immutable.Vector[C
+                                                  //| har]] = Vector(Vector(S, T), Vector(o, o), Vector(o, o))
+
+  foo(vec)(Pos1(0,1))                             //> pos.x0pos.y:1map:Tres2: Boolean = false
+  foo(Vector(Vector('S', '-'), Vector('o', 'o'), Vector('o', 'o')))(Pos1(0,1))
+                                                  //> pos.x0pos.y:1map:-asdfres3: Boolean = true
 //  http://stackoverflow.com/questions/16503387/how-to-capture-inner-matched-value-in-indexwhere-vector-expression
   //test indexOf
   val Some((posY, posX)) = w.map(_ indexOf 4).zipWithIndex.find(_._1 > -1)
                                                   //> posY  : Int = 0
                                                   //| posX  : Int = 1
   //test indexWhere
-  posY                                            //> res2: Int = 0
-  posX                                            //> res3: Int = 1
+  posY                                            //> res4: Int = 0
+  posX                                            //> res5: Int = 1
   
 
 //test zipWithIndex
-  List(1,2,3,4).zipWithIndex                      //> res4: List[(Int, Int)] = List((1,0), (2,1), (3,2), (4,3))
-  List(1,2,3,4).view.zipWithIndex                 //> res5: scala.collection.SeqView[(Int, Int),Seq[_]] = SeqViewZ(...)
+  List(1,2,3,4).zipWithIndex                      //> res6: List[(Int, Int)] = List((1,0), (2,1), (3,2), (4,3))
   
-  //is this better?
+  //how does he know there is an extra iteration w/zipWithIndex?
+  List(1,2,3,4).zipWithIndex foreach({case(i,j)=>println("value:"+i+" index:"+j)})
+                                                  //> value:1 index:0
+                                                  //| value:2 index:1
+                                                  //| value:3 index:2
+                                                  //| value:4 index:3
+  
+  List(1,2,3,4).view.zipWithIndex foreach({case(i,j)=>println("value:"+i+" index:"+j)})
+                                                  //> value:1 index:0
+                                                  //| value:2 index:1
+                                                  //| value:3 index:2
+                                                  //| value:4 index:3
+  
+  
+  //dont know what a view is
+  List(1,2,3,4).view.zipWithIndex                 //> res7: scala.collection.SeqView[(Int, Int),Seq[_]] = SeqViewZ(...)
+  
+  //is this better? More lines of code.
   def locationOf(v: Vector[Vector[Int]])(num: Int): Option[(Int, Int)] = {
   var i, j = 0
   var found = false
@@ -63,11 +88,34 @@ object vector {
 }                                                 //> locationOf: (v: Vector[Vector[Int]])(num: Int)Option[(Int, Int)]
 
 
-  
-// def findChar(c: Char, levelVector: Vector[Vector[Char]]): ={
- //   val x = levelVector.indexWhere(_.indexOf(c) >= 0)
- //   Pos1(x, lvelVector(x).indexOf(c))
- // }
+val level="""ST
+          |oo
+          |oo""".stripMargin                      //> level  : String = ST
+                                                  //| oo
+                                                  //| oo
+
+ Vector(1,2,3,4).indexWhere(x=>(x>2))             //> res8: Int = 2
+ Vector(1,2,3,4).indexWhere(x=>(x>10))            //> res9: Int = -1
+ 
+ Vector('a','b','c').indexWhere(x=>(x!='-'))      //> res10: Int = 0
+ Vector('a','b','c').indexWhere(x=>(x=='c'))      //> res11: Int = 2
+ 
+ Vector(Vector('S', 'T'), Vector('o', 'o'), Vector('o', 'o')).indexWhere(x=>(x.contains('T')))
+                                                  //> res12: Int = 0
+ Vector(Vector('S', 'T'), Vector('o', 'o'), Vector('o', 'o')).indexWhere(x=>(x.contains('o')))
+                                                  //> res13: Int = 1
+ 
+ //return vector then get index using of.
+ val vecTest= Vector(Vector('S', 'T'), Vector('o', 'p'), Vector('q', 'r'))
+                                                  //> vecTest  : scala.collection.immutable.Vector[scala.collection.immutable.Vec
+                                                  //| tor[Char]] = Vector(Vector(S, T), Vector(o, p), Vector(q, r))
+ val index =vecTest.indexWhere(x=>x.contains('o'))//> index  : Int = 1
+ val vecT = vecTest(index)                        //> vecT  : scala.collection.immutable.Vector[Char] = Vector(o, p)
+ vecT.indexOf('o')                                //> res14: Int = 0
+ def findChar(c: Char, levelVector: Vector[Vector[Char]]):Unit ={
+    val x = levelVector.indexOf(c)
+    print(x)
+  }                                               //> findChar: (c: Char, levelVector: Vector[Vector[Char]])Unit
   
   
   

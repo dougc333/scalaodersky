@@ -88,10 +88,10 @@ object Anagrams {
    *  in the example above could have been displayed in some other order.
    */
   def combinations(occurrences: Occurrences): List[Occurrences] ={   
-  	List() :: (for {(char, max) <- occurrences
-      count       <- 1 to max
-      rest        <- combinations(occurrences.filter(pair => pair._1 > char))
-    } yield List((char, count)) ++ rest)  
+  	List() :: (for {(x, xs) <- occurrences
+      count       <- 1 to xs
+      rest        <- combinations(occurrences.filter(pair => pair._1 > x))
+    } yield List((x, count)) ++ rest)  
   }
 
   /** Subtracts occurrence list `y` from occurrence list `x`.

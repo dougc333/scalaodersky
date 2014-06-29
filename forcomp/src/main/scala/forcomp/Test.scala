@@ -78,7 +78,16 @@ object Test extends Application {
 //  .map(k => (k.pageSizeBytes, 1))
 //  .reduceByKey( (a,b) => (a._1 + b._1, a._2 + b._2)
 //  .mapValues( v => (v._1 / v._2) )
+  val occList = List(('a',2),('b',2))
   
+  //iterate using for loop vs. match
+  def testOcc(list:List[(Char,Int)]):Unit={
+    for((x,y)<-list){
+      println("x:"+x+" y:"+y );
+    }
+  }
+  println("+++++++++++++++++++++++++++")
+  testOcc(occList)
   
 }
  
