@@ -46,7 +46,7 @@ trait GameDef {
    * instances of the game.
    */
   val startPos: Pos
-
+ def endBlock: Block = new Block(goal, goal)
   /**
    * The target position where the block has to go.
    * This value is left abstract.
@@ -84,7 +84,7 @@ trait GameDef {
    * This function returns the block at the start position of
    * the game.
    */
-  def startBlock: Block = ???
+  def startBlock: Block = Block(startPos, startPos)
 
   /**
    * A block is represented by the position of the two cubes that
@@ -146,12 +146,14 @@ trait GameDef {
      * Returns `true` if the block is standing.
      * if 2 blocks on top of each other
      */
-    def isStanding: Boolean = {
+    def isStanding1: Boolean = {
        if (b1.x==b2.x && b1.y==b2.y) true
        else
          false
     }
 
+    def isStanding:Boolean = (b1.x==b2.x && b1.y==b2.y)
+    
     /**
      * Returns `true` if the block is entirely inside the terrain.
      */

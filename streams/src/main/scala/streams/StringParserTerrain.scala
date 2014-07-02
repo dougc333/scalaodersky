@@ -54,12 +54,45 @@ trait StringParserTerrain extends GameDef {
    * 
    * cant return true/false have to return a terrain function. This is new
    */
-  def terrainFunction(levelVector: Vector[Vector[Char]]): (Pos => Boolean) ={
-    //if(levelVector(pos.x)(pos.y)!='-' && pos.x >0 && pos.y>0 && pos.x<levelVector.size && pos.y<levelVector(x).size) true 
-    //else 
-    //  false
-    pos=>(levelVector(pos.x)(pos.y)!='-')&&(pos.x >0)&&(pos.y>0)&&(pos.x<levelVector.size)&&(pos.y<levelVector(pos.x).size)
+  
+  def terrainFunction(levelVector: Vector[Vector[Char]]): Pos => Boolean = { position: Pos => validPosition(levelVector, position) }
+
+  def validPosition(levelVector: Vector[Vector[Char]], position: Pos) : Boolean = {
+
+      def calculateValidPosition(levelVector: Vector[Vector[Char]], position: Pos, xAxis: Int): Boolean = {
+         if (levelVector.isEmpty) false
+         else {
+           if (position.x == xAxis) validColumn(levelVector.head, position.y)
+           else calculateValidPosition(levelVector.tail, position, xAxis+1)
+         }
+
+      }
+
+      calculateValidPosition(levelVector, position, 0)
   }
+
+  def validColumn(row: Vector[Char], yPosition: Int) : Boolean = {
+
+    if (yPosition >= row.size || yPosition < 0) false
+    else row(yPosition) match  {
+      case ('o'|'S'|'T') => true
+      case _ => false
+    }
+
+  }
+  //def terrainFunction(levelVector: Vector[Vector[Char]]): (Pos=>Boolean) ={
+  //  pos=> bounds(levelVector,pos) && (levelVector(pos.x)(pos.y)!='-')
+ // }
+  
+  
+  //def bounds(levelVector:Vector[Vector[Char]],pos:Pos):Boolean={ 
+  //  if( (pos.x>=0) && (pos.y>=0) && pos.x<levelVector.size && pos.y<levelVector.size && pos.x<levelVector.size ){
+  //    true
+ // }
+   // else{
+   //   false
+   // }
+  //}
 
   /**
    * This function should return the position of character `c` in the
@@ -69,10 +102,25 @@ trait StringParserTerrain extends GameDef {
    * Hint: you can use the functions `indexWhere` and / or `indexOf` of the
    * `Vector` class
    */
-  def findChar(c: Char, levelVector: Vector[Vector[Char]]): Pos ={
-    val x = levelVector.indexWhere(x=>x.contains(c))
-    val y = levelVector(x).indexOf(c)
-    Pos(x,y)
+//  def findChar(c: Char, levelVector: Vector[Vector[Char]]): Pos ={
+//    val x = levelVector.indexWhere(x=>x.contains(c))
+//    val y = levelVector(x).indexOf(c)
+//    Pos(x,y)
+//  }
+  
+  def findChar(c: Char, levelVector: Vector[Vector[Char]]): Pos = {
+
+    def obtainPositionOfChar(c: Char, levelVector: Vector[Vector[Char]], xAxis: Int): Pos = {
+         if (levelVector.isEmpty) new Pos(-1,-1)
+         else {
+           val yAxisOfChar = levelVector.head.indexOf(c,0)
+           yAxisOfChar match {
+             case x if x == -1 => obtainPositionOfChar(c, levelVector.tail, xAxis+1)
+             case _  => new Pos(xAxis, yAxisOfChar)
+            }
+         }
+    }
+    obtainPositionOfChar(c, levelVector, 0)
   }
 
   private lazy val vector: Vector[Vector[Char]] =

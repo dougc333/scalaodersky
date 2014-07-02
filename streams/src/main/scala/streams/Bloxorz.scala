@@ -1,5 +1,7 @@
 package streams
 
+
+
 /**
  * A main object that can be used to execute the Bloxorz solver
  */
@@ -14,7 +16,7 @@ object Bloxorz extends App {
     val goal = Pos(5,8)
   }
   
-  println(InfiniteLevel.solution)
+  println("infinite soln:"+InfiniteLevel.solution)
 
   /**
    * A simple level constructed using the StringParserTerrain 
@@ -30,8 +32,8 @@ object Bloxorz extends App {
         |------""".stripMargin
   }
 
-  println(Level0.solution)
-
+  println("Level0 soln:"+Level0.solution)
+  
   /**
    * Level 1 of the official Bloxorz game
    */
@@ -45,5 +47,5 @@ object Bloxorz extends App {
         |------ooo-""".stripMargin
   }
 
-  println(Level1.solution)
+  println("level1 soln"+Level1.solution)
 }
