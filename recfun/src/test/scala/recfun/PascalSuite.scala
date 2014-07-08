@@ -5,9 +5,12 @@ import org.scalatest.FunSuite
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 
+import Main._
+
 @RunWith(classOf[JUnitRunner])
 class PascalSuite extends FunSuite {
-  import Main.pascal
+  //import Main.pascal
+  
   test("pascal: col=0,row=2") {
     assert(pascal(0,2) === 1)
   }
@@ -18,5 +21,19 @@ class PascalSuite extends FunSuite {
 
   test("pascal: col=1,row=3") {
     assert(pascal(1,3) === 3)
+  }
+  test("pascal:col=0,row=0"){
+    assert(pascal(0,0)==1)
+  }
+  //there are some -1 cases where the col/rows are out of bounds
+  test("pascal:col=0,row=3"){
+    assert(pascal(0,3)==1)
+  }
+  
+  test("pascalScala:col=0,row=2"){
+    assert(pascalScala(0,2)==pascal(0,2))
+    assert(pascalScala(1,2)==pascal(1,2))
+    assert(pascalScala(1,3)==pascal(1,3))
+    assert(pascalScala(0,0)==pascal(0,0))
   }
 }

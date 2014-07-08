@@ -1,11 +1,11 @@
 package streams
 
 import org.scalatest.FunSuite
-
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
-
 import Bloxorz._
+import scala.collection.mutable.LinkedList
+import scala.util.matching.Regex
 
 
 @RunWith(classOf[JUnitRunner])
@@ -85,8 +85,50 @@ class BloxorzSuite extends FunSuite {
       val foo1 = findChar('A', Vector(Vector('o','o'),Vector('-','o')))
       //println("foo1:"+foo1)
       assert(foo1==Pos(-1,-1))
+      println(level)
+      println(level.toVector.groupBy(_.toChar).map(x=>(x._1,x._2.length)))
+      println("make recursive groupby:"+s(level))
+      println("make recursive groupby tail:"+s(level, List()))
+      println("abcd".map(x=>x.toString+x.toString))
+      println("hi".r.findAllIn("hihihiasdf").size)
+      //findChar('A',terrain(level))
+      println("catdogcat".r.findAllIn("cat"))
+      println("catdogcat".r.findAllIn("dog"))
+      println("catdogcat".r.findAllIn("cat").size == "catdogcat".r.findAllIn("dog"))
+  //collection class practice. how to convert into lists of lists and vectors of vectors
+      //println("coxe".r.findAllIn("co".{1}"e").size)
+      val it = level.lines
+      println(it.size)
+      val pattern = new Regex("co.{1}e")
+      val str = "cocasdfe"
+      val foo2 = pattern findAllIn str
+      println("foo2;"+foo2.size)
+      
+      val p1 = new Regex("[^\\.]xyz")
+      val str1 = ".xyz"
+      val str2 ="asdfxyz"
+        println(p1 findAllIn str1)
+        println(p1 findAllIn str2)
     }
   }
+  
+ 
+ 
+  //base case + inductive step
+  //base case is no size left. 
+  //inductive step, compare, not there add it to list. Contrast w/hashmap
+  def s(x : String) : List[String] = if(x.size == 0) Nil else {
+    val (l,r) = x.span(_ == x(0))
+    l :: s(r) 
+  }
+  //tail recursive
+  def s(x : String, y : List[String] = Nil) : List[String] = {
+    if(x.size == 0) y.reverse 
+    else {
+        val (l,r) = x.span(_ == x(0))
+        s(r, l :: y)
+    }
+}
   
   test("isStanding") {
     new Level1 {

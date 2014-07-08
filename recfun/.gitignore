@@ -8,3 +8,4 @@ submission/
 .project
 .classpath
 .settings
+/bin

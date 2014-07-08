@@ -1,7 +1,6 @@
 package edu.stanford.codingbat;
 
 import static org.junit.Assert.*;
-
 import org.junit.Test;
 
 public class TestArray1 {
