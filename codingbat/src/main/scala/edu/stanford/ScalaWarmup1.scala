@@ -264,6 +264,9 @@ def loneTeen(a:Int, b:Int):Boolean= {
 //delDel("adelHello") → "aHello"
 //delDel("adedbc") → "adedbc"
 def delDel(str:String):String= {
+  if(str.startsWith("del")) str.substring("del".length(),str.length())
+  else 
+    str
   
 }
 
@@ -275,7 +278,9 @@ def delDel(str:String):String= {
 //mixStart("pix snacks") → true
 //mixStart("piz snacks") → false
 def mixStart(str:String):Boolean= {
-  
+  if(str.substring(1,str.length()).startsWith("ix")) true
+  else
+    false
 }
 
 
@@ -286,6 +291,14 @@ def mixStart(str:String):Boolean= {
 //startOz("bzoo") → "z"
 //startOz("oxx") → "o"
 def startOz(str:String):String={
+  val sb = new StringBuffer()
+  //this isnt really necessary, just stressing String is a java data structure
+  //maybe use StringOps instead and apply(0) and apply(1) for getting chars in string
+  //replace parameter list with StringOps or Seq[Char]?
+  val testMe:Seq[Char] = str
+  if (testMe(0)=='o') sb.append("o")
+  if (testMe(1) =='z') ("z")
+  sb.toString()
   
 }
 
@@ -294,8 +307,10 @@ def startOz(str:String):String={
 //intMax(1, 2, 3) → 3
 //intMax(1, 3, 2) → 3
 //intMax(3, 2, 1) → 3
+//import scala.collection.immutable._
 def intMax(a:Int, b:Int, c:Int):Int= {
-  
+  val intSet = scala.collection.immutable.Set(a,b,c)
+  intSet.max
 }
 
 
@@ -305,7 +320,8 @@ def intMax(a:Int, b:Int, c:Int):Int= {
 //close10(13, 8) → 8
 //close10(13, 7) → 0
 def close10(a:Int, b:Int):Int= {
-  
+  //do you want a single value or a collection return defines whether to use a map or flatMap
+  Set(a,b).map(x=>Math.abs(x-10)).min
 }
 
 
@@ -315,7 +331,7 @@ def close10(a:Int, b:Int):Int= {
 //in3050(30, 41) → false
 //in3050(40, 50) → true
 def in3050(a:Int, b:Int):Boolean= {
-  
+  Set(a,b).forall(x=>((x<=30)&&(x<=40))) || Set(a,b).forall(x=>((x<=40)&&(x<=50)))
 }
 
 
@@ -325,8 +341,13 @@ def in3050(a:Int, b:Int):Boolean= {
 //max1020(11, 19) → 19
 //max1020(19, 11) → 19
 //max1020(11, 9) → 11
-def max1020(a:Int, :Intb):Int= {
-  
+def max1020(a:Int,b:Int):Int= {
+  //need accumulator? or flatMap where collection is one value or foldLeft with accumulator
+  //4 ways to do this, recursive accumulator testing each element
+  //flatMap
+  //for which is equivalent to flatmap/map
+  //foldLeft
+  0
 }
 
 
@@ -337,8 +358,9 @@ def max1020(a:Int, :Intb):Int= {
 //stringE("Hello") → true
 //stringE("Heelle") → true
 //stringE("Heelele") → false
-def stringE(str:String):Boolean {
-  
+def stringE(str:String):Boolean ={
+ val testMe:Seq[Char]=str
+ testMe.count(x=>(x=='e')) == 3 || testMe.count(x=>(x=='e')) == 1
 }
 
 
@@ -350,7 +372,8 @@ def stringE(str:String):Boolean {
 //lastDigit(6, 17) → false
 //lastDigit(3, 113) → true
 def lastDigit(a:Int, b:Int):Boolean= {
-  
+  //THIS WORKS???????
+  Set(a,b).forall(x=>(x%7==7))
 }
 
 
@@ -361,7 +384,12 @@ def lastDigit(a:Int, b:Int):Boolean= {
 //endUp("hi there") → "hi thERE"
 //endUp("hi") → "HI"
 def endUp(str:String):String= {
-  
+  val testMe:Seq[Char]=str
+  if (testMe.size<3) testMe.map(x=>x.toUpper).toString()
+  else{
+    val split = testMe.splitAt(2)
+    split._1.toString()+split._2.map(x=>x.toUpper).toString()
+  }
 }
 
 
@@ -372,7 +400,19 @@ def endUp(str:String):String= {
 //everyNth("abcdefg", 2) → "aceg"
 //everyNth("abcdefg", 3) → "adg"
 def everyNth(str:String, n:Int):String= {
-  
+  val sb = new StringBuffer()
+  val testMe:Seq[Char] = str
+  //good question how to track indexes in sequences?
+  //need more scalaish way to do this wo the if statements
+  if(testMe.length >=n){
+    for(i <- 0 to testMe.length){
+     if(i%n ==0) sb.append(testMe(i))
+    }
+    sb.toString()
+  }else{
+    str
+  }
+  }
 }
 
-}
+
