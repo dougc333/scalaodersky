@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuite 
-errors="0" failures="0" hostname="localhost.localdomain" name="edu.stanford.codingbat.ScalaWarmup2Suite" tests="1" time="0.001" timestamp="2014-07-11T21:38:55">
+errors="0" failures="0" hostname="localhost.localdomain" name="edu.stanford.codingbat.ScalaWarmup2Suite" tests="1" time="0.001" timestamp="2014-07-13T14:23:32">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment">
     </property>
@@ -62,7 +62,7 @@ errors="0" failures="0" hostname="localhost.localdomain" name="edu.stanford.codi
     <property name="sun.arch.data.model" value="64"> </property>
     <property name="java.home" value="/usr/java/jdk1.7.0_25/jre"> </property>
     <property 
-    name="sun.java.command" value="org.scalatest.tools.Runner -R /home/dc/TestScalatest/target/classes /home/dc/TestScalatest/target/test-classes -o -fWDF /home/dc/scalaodersky/codingbat/surefire-reports/TestSuite.txt -u /home/dc/scalaodersky/codingbat/surefire-reports/.">
+    name="sun.java.command" value="org.scalatest.tools.Runner -R /home/dc/TestScalatest/target/classes /home/dc/TestScalatest/target/test-classes -o -f /home/dc/scalaodersky/codingbat/surefire-reports/TestSuite.txt -u /home/dc/scalaodersky/codingbat/surefire-reports/.">
 </property>
     <property name="java.specification.vendor" value="Oracle Corporation">
     </property>
@@ -87,7 +87,7 @@ errors="0" failures="0" hostname="localhost.localdomain" name="edu.stanford.codi
     <property name="sun.cpu.isalist" value=""> </property>
   </properties>
   <testcase 
-  name="ScalaWarmup2Test" classname="edu.stanford.codingbat.ScalaWarmup2Suite" time="0.001">
+  name="ScalaWarmup2Test" classname="edu.stanford.codingbat.ScalaWarmup2Suite" time="0.0">
 </testcase>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
