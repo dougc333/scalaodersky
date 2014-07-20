@@ -1,4 +1,4 @@
-package edu.stanford.codingbat
+package edu.stanford.codingbatsource
 
 class ScalaRecursion1 {
 

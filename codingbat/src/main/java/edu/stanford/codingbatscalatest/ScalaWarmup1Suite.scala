@@ -1,8 +1,4 @@
-package codingbat
-
-import java.io.{FileWriter,File,PrintWriter}
-import org.scalatest.FunSuite
-import edu.stanford.codingbat.ScalaWarmup1
+package edu.stanford.codingbatscalatest
 
 //no need to import scalatest?
 

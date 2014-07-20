@@ -1,9 +1,4 @@
-package codingbat
-
-
-import java.io.{FileWriter,File,PrintWriter}
-import org.scalatest.FunSuite
-import edu.stanford.codingbat.ScalaWarmup2
+package edu.stanford.codingbatscalatest
 
 class ScalaWarmup2Suite extends FunSuite{
   val t = new ScalaWarmup2

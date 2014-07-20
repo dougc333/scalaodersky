@@ -1,8 +1,7 @@
 package edu.stanford;
+
+
 class String2{
-
-
-
 //Given a string, return a string where for every char in the original, there are two chars. 
 
 //doubleChar("The") → "TThhee"
@@ -10,9 +9,9 @@ class String2{
 //doubleChar("Hi-There") → "HHii--TThheerree"  
   public String doubleChar(String str) {
      StringBuffer sb = new StringBuffer();
-     for(int i=0;i<str.length;i++){
-        sb.append(str.charAt(i))
-        sb.append(str.charAt(i))
+     for(int i=0;i<str.length();i++){
+        sb.append(str.charAt(i));
+        sb.append(str.charAt(i));
      }  
      return sb.toString();
   }
@@ -22,8 +21,15 @@ class String2{
 //countHi("abc hi ho") → 1
 //countHi("ABChi hi") → 2
 //countHi("hihi") → 2
-  def countHi(str:String):Int{
-    "hi".r.findAllIn(str).size
+  public int countHi(String str){
+    int num=0;
+    
+	for(int i=0;i<str.length();i++){
+      if(str.substring(i,i+"hi".length()).equals("hi")){
+    	num++;
+      }
+    }
+	return num;
   }
 
 //Return true if the string "cat" and "dog" appear the same number of times in the given string. 
@@ -31,8 +37,14 @@ class String2{
 //catDog("catdog") → true
 //catDog("catcat") → false
 //catDog("1cat1cadodog") → true
-  def catDog(str:String):Int{
-    str.r.findAllIn("cat").size == str.r.findAllIn("dog").size
+  public int catDog(String str){
+    int num=0;
+    for(int i=0;i<str.length();i++){
+      if(str.substring(i,i+3).equals("cat") || str.substring(i,i+3).equals("dog") ){
+    	 num++;  
+      }
+    }
+    return num;
   }
 
 //Return the number of times that the string "code" appears anywhere in the given string, except we'll accept any letter for the 'd', so "cope" and "cooe" count. 
@@ -40,8 +52,15 @@ class String2{
 //countCode("aaacodebbb") → 1
 //countCode("codexxcode") → 2
 //countCode("cozexxcope") → 2
-  def countCode(String str):Int{
-    str.r.findAllIn("co"+.{1}+"e").size
+  public int countCode(String str){
+    int num=0;
+    
+	for(int i=0;i<str.length();i++){
+      if(str.substring(i,i+4).startsWith("co") && str.substring(i,i+4).endsWith("e") ){
+        num++;	  
+      }
+    }
+	return num;
   }
 
 //Given two strings, return true if either of the strings appears at the very end of the other string, 
@@ -51,8 +70,8 @@ class String2{
 //endOther("Hiabc", "abc") → true
 //endOther("AbC", "HiaBc") → true
 //endOther("abc", "abXabc") → true
-  def endOther(str:String,other:String):Boolean{
-     (str.endsWith(other))||(other.endsWith(str))
+  public boolean endOther(String str, String other){
+     return ( str.toLowerCase().endsWith(other.toLowerCase()) || other.toLowerCase().endsWith(str.toLowerCase()) );
   }
 
 //Return true if the given string contains an appearance of "xyz" where the xyz is not directly preceeded by a period (.). So "xxyz" counts but "x.xyz" does not. 
@@ -60,9 +79,9 @@ class String2{
 //xyzThere("abcxyz") → true
 //xyzThere("abc.xyz") → false
 //xyzThere("xyz.abc") → true
-  def xyzThere(str:String):Boolean{
-    val p1 = new Regex("[^\\.]xyz")
-    (p1 findAllIn str) !=0
+  public boolean xyzThere(String str){
+    String regex = "[^\\.]xyz";
+    return str.matches(regex);
   }
 
 //Return true if the given string contains a "bob" string, but where the middle 'o' char can be any char. 
@@ -71,9 +90,9 @@ class String2{
 //bobThere("b9b") → true
 //bobThere("bac") → false
   
-  def bobThere(str:String):Boolean{
-     val regEx=new Regex("b.{1}b")
-     (regEx findAllIn str)!=0
+  public boolean bobThere(String str){
+     String regex="\"b.{1}b";
+     return str.matches(regex);
   }
 
 
@@ -86,7 +105,7 @@ class String2{
 //xyBalance("yaaxbb") → false
 
 public boolean xyBalance(String str) {
-	  
+  
 }
 
 
@@ -98,7 +117,22 @@ public boolean xyBalance(String str) {
 //mixString("Hi", "There") → "HTihere"
 //mixString("xxxx", "There") → "xTxhxexre"
 public String mixString(String a, String b) {
-	  
+	
+  StringBuffer sb = new StringBuffer();
+  if(a.length()>b.length()){
+    for(int i=0;i<a.length();i++){
+      sb.append(a.charAt(i));
+      sb.append(b.charAt(i));
+    }
+    sb.append(a.substring(a.length()-b.length(),a.length()));
+  }else{
+	for(int i=0;i<b.length();i++){
+	  sb.append(a.charAt(i));
+	  sb.append(b.charAt(i));
+	 }
+	 sb.append(b.substring(b.length()-a.length(),b.length())); 
+  }
+  return sb.toString();
 }
 
 
@@ -109,7 +143,11 @@ public String mixString(String a, String b) {
 //repeatEnd("Hello", 2) → "lolo"
 //repeatEnd("Hello", 1) → "
 public String repeatEnd(String str, int n) {
-	  
+  StringBuilder sb = new StringBuilder();
+  for(int i=0;i<n;i++){
+    sb.append(str.substring(str.length()-n,str.length()));
+  }
+  return sb.toString();
 }
 
 
@@ -121,7 +159,12 @@ public String repeatEnd(String str, int n) {
 //repeatFront("Chocolate", 3) → "ChoChC"
 //repeatFront("Ice Cream", 2) → "IcI"
 public String repeatFront(String str, int n) {
-	  
+  
+  StringBuilder sb = new StringBuilder();
+  
+  for(int i=n;i>0;i--){
+       
+  }
 }
 
 

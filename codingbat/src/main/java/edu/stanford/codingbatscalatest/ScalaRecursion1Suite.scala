@@ -1,8 +1,4 @@
-package codingbat
-
-import java.io.{FileWriter,File,PrintWriter}
-import org.scalatest.FunSuite
-import edu.stanford.codingbat.ScalaRecursion1
+package edu.stanford.codingbatscalatest
 
 
 class ScalaRecursion1Suite extends FunSuite{

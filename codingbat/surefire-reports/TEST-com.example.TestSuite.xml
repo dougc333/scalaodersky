@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuite 
-errors="0" failures="0" hostname="localhost.localdomain" name="org.scalatest.tools.DiscoverySuite" tests="0" time="0.04" timestamp="2014-07-16T16:59:07">
+errors="0" failures="0" hostname="localhost.localdomain" name="com.example.TestSuite" tests="1" time="0.039" timestamp="2014-07-16T16:59:07">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment">
     </property>
@@ -88,6 +88,9 @@ errors="0" failures="0" hostname="localhost.localdomain" name="org.scalatest.too
     <property name="sun.desktop" value="gnome"> </property>
     <property name="sun.cpu.isalist" value=""> </property>
   </properties>
+  <testcase 
+  name="testing testmethod" classname="com.example.TestSuite" time="0.023">
+</testcase>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

@@ -1,4 +1,4 @@
-package edu.stanford
+package edu.stanford.codingbatsource
 
 object ScalaCollectionParallel {
 

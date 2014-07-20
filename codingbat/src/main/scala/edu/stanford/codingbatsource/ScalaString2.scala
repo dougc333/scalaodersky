@@ -1,4 +1,6 @@
-package edu.stanford
+package edu.stanford.codingbatsource
+
+import scala.util.matching.Regex
 
 class ScalaString2{
 

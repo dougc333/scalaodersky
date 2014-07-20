@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuite 
-errors="0" failures="5" hostname="localhost.localdomain" name="codingbat.ScalaWarmup2Suite" tests="19" time="0.032" timestamp="2014-07-13T14:23:32">
+errors="0" failures="5" hostname="localhost.localdomain" name="codingbat.ScalaWarmup2Suite" tests="19" time="0.039" timestamp="2014-07-13T15:33:19">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment">
     </property>
@@ -87,16 +87,16 @@ errors="0" failures="5" hostname="localhost.localdomain" name="codingbat.ScalaWa
     <property name="sun.cpu.isalist" value=""> </property>
   </properties>
   <testcase 
-  name="ScalaWarmup2Test" classname="codingbat.ScalaWarmup2Suite" time="0.001">
+  name="ScalaWarmup2Test" classname="codingbat.ScalaWarmup2Suite" time="0.0">
 </testcase>
   <testcase 
   name="test stringTimes" classname="codingbat.ScalaWarmup2Suite" time="0.0">
 </testcase>
   <testcase 
-  name="test frontTimes" classname="codingbat.ScalaWarmup2Suite" time="0.001">
+  name="test frontTimes" classname="codingbat.ScalaWarmup2Suite" time="0.0">
 </testcase>
   <testcase 
-  name="testing countXX" classname="codingbat.ScalaWarmup2Suite" time="0.003">
+  name="testing countXX" classname="codingbat.ScalaWarmup2Suite" time="0.005">
 </testcase>
   <testcase 
   name="testing doubleX" classname="codingbat.ScalaWarmup2Suite" time="0.001">
@@ -105,10 +105,10 @@ errors="0" failures="5" hostname="localhost.localdomain" name="codingbat.ScalaWa
   name="testing stringBits" classname="codingbat.ScalaWarmup2Suite" time="0.001">
 </testcase>
   <testcase 
-  name="testing stringSplosion" classname="codingbat.ScalaWarmup2Suite" time="0.001">
+  name="testing stringSplosion" classname="codingbat.ScalaWarmup2Suite" time="0.0">
 </testcase>
   <testcase 
-  name="testing last2" classname="codingbat.ScalaWarmup2Suite" time="0.002">
+  name="testing last2" classname="codingbat.ScalaWarmup2Suite" time="0.003">
 </testcase>
   <testcase 
   name="testing arrayCount9" classname="codingbat.ScalaWarmup2Suite" time="0.001">
@@ -120,7 +120,7 @@ errors="0" failures="5" hostname="localhost.localdomain" name="codingbat.ScalaWa
   name="testing array123" classname="codingbat.ScalaWarmup2Suite" time="0.002">
 </testcase>
   <testcase 
-  name="testing stringMatch" classname="codingbat.ScalaWarmup2Suite" time="0.006">
+  name="testing stringMatch" classname="codingbat.ScalaWarmup2Suite" time="0.007">
     <failure 
     message="org.scalatest.exceptions.TestFailedException was thrown." type="class org.scalatest.exceptions.TestFailedException">
       org.scalatest.exceptions.TestFailedException
@@ -180,7 +180,7 @@ errors="0" failures="5" hostname="localhost.localdomain" name="codingbat.ScalaWa
 </failure>
 </testcase>
   <testcase 
-  name="testing stringX" classname="codingbat.ScalaWarmup2Suite" time="0.001">
+  name="testing stringX" classname="codingbat.ScalaWarmup2Suite" time="0.0">
     <failure 
     message="org.scalatest.exceptions.TestFailedException was thrown." type="class org.scalatest.exceptions.TestFailedException">
       org.scalatest.exceptions.TestFailedException
@@ -240,10 +240,10 @@ errors="0" failures="5" hostname="localhost.localdomain" name="codingbat.ScalaWa
 </failure>
 </testcase>
   <testcase 
-  name="testing altPairs" classname="codingbat.ScalaWarmup2Suite" time="0.002">
+  name="testing altPairs" classname="codingbat.ScalaWarmup2Suite" time="0.003">
 </testcase>
   <testcase 
-  name="test stringYak" classname="codingbat.ScalaWarmup2Suite" time="0.002">
+  name="test stringYak" classname="codingbat.ScalaWarmup2Suite" time="0.003">
 </testcase>
   <testcase 
   name="testing array667" classname="codingbat.ScalaWarmup2Suite" time="0.001">
@@ -369,7 +369,7 @@ errors="0" failures="5" hostname="localhost.localdomain" name="codingbat.ScalaWa
   name="testing has271" classname="codingbat.ScalaWarmup2Suite" time="0.001">
 </testcase>
   <testcase 
-  name="testing partialSum" classname="codingbat.ScalaWarmup2Suite" time="0.002">
+  name="testing partialSum" classname="codingbat.ScalaWarmup2Suite" time="0.001">
     <failure 
     message="org.scalatest.exceptions.TestFailedException was thrown." type="class org.scalatest.exceptions.TestFailedException">
       org.scalatest.exceptions.TestFailedException

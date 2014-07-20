@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuite 
-errors="0" failures="0" hostname="localhost.localdomain" name="edu.stanford.codingbat.ScalaWarmup1Suite" tests="2" time="0.001" timestamp="2014-07-13T14:23:32">
+errors="0" failures="0" hostname="localhost.localdomain" name="edu.stanford.codingbat.ScalaWarmup1Suite" tests="2" time="0.001" timestamp="2014-07-13T15:33:19">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment">
     </property>
@@ -87,7 +87,7 @@ errors="0" failures="0" hostname="localhost.localdomain" name="edu.stanford.codi
     <property name="sun.cpu.isalist" value=""> </property>
   </properties>
   <testcase 
-  name="simple test" classname="edu.stanford.codingbat.ScalaWarmup1Suite" time="0.0">
+  name="simple test" classname="edu.stanford.codingbat.ScalaWarmup1Suite" time="0.001">
 </testcase>
   <testcase 
   name="test sleepIn" classname="edu.stanford.codingbat.ScalaWarmup1Suite" time="0.0">

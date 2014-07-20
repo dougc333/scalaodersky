@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuite 
-errors="0" failures="1" hostname="localhost.localdomain" name="codingbat.ScalaRecursion1Suite" tests="30" time="0.023" timestamp="2014-07-13T14:23:32">
+errors="0" failures="1" hostname="localhost.localdomain" name="codingbat.ScalaRecursion1Suite" tests="30" time="0.031" timestamp="2014-07-13T15:33:19">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment">
     </property>
@@ -87,7 +87,7 @@ errors="0" failures="1" hostname="localhost.localdomain" name="codingbat.ScalaRe
     <property name="sun.cpu.isalist" value=""> </property>
   </properties>
   <testcase 
-  name="testing factorial" classname="codingbat.ScalaRecursion1Suite" time="0.0">
+  name="testing factorial" classname="codingbat.ScalaRecursion1Suite" time="0.001">
 </testcase>
   <testcase 
   name="teting bunnyEars" classname="codingbat.ScalaRecursion1Suite" time="0.0">
@@ -96,19 +96,19 @@ errors="0" failures="1" hostname="localhost.localdomain" name="codingbat.ScalaRe
   name="testing fibonacci" classname="codingbat.ScalaRecursion1Suite" time="0.0">
 </testcase>
   <testcase 
-  name="testing bunnyEars2" classname="codingbat.ScalaRecursion1Suite" time="0.001">
+  name="testing bunnyEars2" classname="codingbat.ScalaRecursion1Suite" time="0.0">
 </testcase>
   <testcase 
-  name="testing triangle" classname="codingbat.ScalaRecursion1Suite" time="0.0">
+  name="testing triangle" classname="codingbat.ScalaRecursion1Suite" time="0.001">
 </testcase>
   <testcase 
-  name="testing sumDigits" classname="codingbat.ScalaRecursion1Suite" time="0.001">
+  name="testing sumDigits" classname="codingbat.ScalaRecursion1Suite" time="0.0">
 </testcase>
   <testcase 
   name="testing count7" classname="codingbat.ScalaRecursion1Suite" time="0.0">
 </testcase>
   <testcase 
-  name="testing count8" classname="codingbat.ScalaRecursion1Suite" time="0.006">
+  name="testing count8" classname="codingbat.ScalaRecursion1Suite" time="0.008">
     <failure 
     message="an implementation is missing" type="class scala.NotImplementedError">
       scala.NotImplementedError: an implementation is missing
@@ -166,10 +166,10 @@ errors="0" failures="1" hostname="localhost.localdomain" name="codingbat.ScalaRe
 </failure>
 </testcase>
   <testcase 
-  name="testing powerN" classname="codingbat.ScalaRecursion1Suite" time="0.0">
+  name="testing powerN" classname="codingbat.ScalaRecursion1Suite" time="0.001">
 </testcase>
   <testcase 
-  name="testing countX" classname="codingbat.ScalaRecursion1Suite" time="0.0">
+  name="testing countX" classname="codingbat.ScalaRecursion1Suite" time="0.001">
 </testcase>
   <testcase 
   name="testing countHi" classname="codingbat.ScalaRecursion1Suite" time="0.0">
@@ -178,7 +178,7 @@ errors="0" failures="1" hostname="localhost.localdomain" name="codingbat.ScalaRe
   name="testing changeXY" classname="codingbat.ScalaRecursion1Suite" time="0.0">
 </testcase>
   <testcase 
-  name="testing changePi" classname="codingbat.ScalaRecursion1Suite" time="0.0">
+  name="testing changePi" classname="codingbat.ScalaRecursion1Suite" time="0.001">
 </testcase>
   <testcase 
   name="testing noX" classname="codingbat.ScalaRecursion1Suite" time="0.0">
@@ -190,10 +190,10 @@ errors="0" failures="1" hostname="localhost.localdomain" name="codingbat.ScalaRe
   name="testing array11" classname="codingbat.ScalaRecursion1Suite" time="0.0">
 </testcase>
   <testcase 
-  name="testing array220" classname="codingbat.ScalaRecursion1Suite" time="0.0">
+  name="testing array220" classname="codingbat.ScalaRecursion1Suite" time="0.001">
 </testcase>
   <testcase 
-  name="testing allStar" classname="codingbat.ScalaRecursion1Suite" time="0.001">
+  name="testing allStar" classname="codingbat.ScalaRecursion1Suite" time="0.0">
 </testcase>
   <testcase 
   name="testing pairStar" classname="codingbat.ScalaRecursion1Suite" time="0.0">
@@ -211,7 +211,7 @@ errors="0" failures="1" hostname="localhost.localdomain" name="codingbat.ScalaRe
   name="testing count11" classname="codingbat.ScalaRecursion1Suite" time="0.0">
 </testcase>
   <testcase 
-  name="testing stringClean" classname="codingbat.ScalaRecursion1Suite" time="0.0">
+  name="testing stringClean" classname="codingbat.ScalaRecursion1Suite" time="0.001">
 </testcase>
   <testcase 
   name="testing countHi2" classname="codingbat.ScalaRecursion1Suite" time="0.0">

@@ -34,5 +34,14 @@ class CircuitSuite extends CircuitSimulator with FunSuite {
   //
   // to complete with tests for orGate, demux, ...
   //
-
+  test("or gate example"){
+    
+  }
+  
+  test("or2 gate"){
+    
+  }
+  test("demux"){
+    
+  }
 }

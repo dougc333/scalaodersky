@@ -1,6 +1,7 @@
-package edu.stanford.codingbat
+package edu.stanford.codingbatsource
 
 import scala.collection.immutable.StringOps
+import scala.Array.canBuildFrom
 
 class ScalaWarmup2 {
 

@@ -40,7 +40,7 @@ public boolean groupNoAdj(int start, int[] nums, int target) {
 //groupSum5(0, {2, 5, 10, 4}, 19) → true
 //groupSum5(0, {2, 5, 10, 4}, 17) → true
 //groupSum5(0, {2, 5, 10, 4}, 12) → false
-p/ublic boolean groupSum5(int start, int[] nums, int target) {
+public boolean groupSum5(int start, int[] nums, int target) {
 	  
 }
 

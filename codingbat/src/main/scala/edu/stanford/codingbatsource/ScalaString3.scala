@@ -1,4 +1,4 @@
-package edu.stanford
+package edu.stanford.codingbatsource
 
 class ScalaString3 {
 
@@ -95,7 +95,7 @@ public String sameEnds(String string) {
 //mirrorEnds("abca") → "a"
 //mirrorEnds("aba") → "aba"
 public String mirrorEnds(String string) {
-	  
+
 }
 
 
