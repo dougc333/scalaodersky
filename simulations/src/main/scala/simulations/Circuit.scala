@@ -79,8 +79,21 @@ abstract class CircuitSimulator extends Simulator {
       inverter(a5,output)
   }
 
+  // demux test case: 
+  // base case: 0 in list 
+  // 
   def demux(in: Wire, c: List[Wire], out: List[Wire]) {
-    //
+    c match{
+      case Nil => Nil; println("what is base case with 0 wires?")
+      case x::xs => println("x:"+x+" xs:"+xs)
+        val a,b,c = new Wire
+        val splitList = out.splitAt(out.size/2)
+        inverter(x,c)
+        andGate(in,x,a)
+        andGate(in,c,b)
+        demux(a,xs,splitList._1)
+        demux(b,xs,splitList._2)
+    }
     
   }
 
@@ -110,10 +123,11 @@ object Circuit extends CircuitSimulator {
 
   //
   // to complete with orGateExample and demuxExample...
-  //
+  // and why do we need this? 
 }
 
 object CircuitMain extends App {
   // You can write tests either here, or better in the test class CircuitSuite.
+  // what is the point of this code vs. the unit tests? This is functional for delay? 
   Circuit.andGateExample
 }

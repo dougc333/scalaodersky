@@ -17,30 +17,74 @@ class CircuitSuite extends CircuitSimulator with FunSuite {
     in1.setSignal(false)
     in2.setSignal(false)
     run
-    
-    assert(out.getSignal === false, "and 1")
-
+    assert(out.getSignal === false, "false AND false = false")
+ 
     in1.setSignal(true)
+    in2.setSignal(false)
     run
-    
-    assert(out.getSignal === false, "and 2")
-
+    assert(out.getSignal === false, "true AND false = false")
+  
+    in1.setSignal(true)
     in2.setSignal(true)
     run
+    assert(out.getSignal === true, "true AND true = true")
     
-    assert(out.getSignal === true, "and 3")
   }
 
   //
   // to complete with tests for orGate, demux, ...
   //
   test("or gate example"){
+    val in1,in2,out = new Wire
+    orGate(in1,in2,out)
+    in1.setSignal(true)
+    in2.setSignal(true)
+    run
+    assert(out.getSignal == true, "true or true = true")
+    
+    in1.setSignal(true)
+    in2.setSignal(false)
+    run
+    assert(out.getSignal == true, "true or false = true")
+    
+    in1.setSignal(false)
+    in2.setSignal(true)
+    run
+    assert(out.getSignal == true, "false or true = true")
+    
+    in1.setSignal(false)
+    in2.setSignal(false)
+    run
+    assert(out.getSignal == false, "false or false = false")
     
   }
   
   test("or2 gate"){
+    val in1,in2,out = new Wire
+    orGate2(in1,in2,out)
+    in1.setSignal(true)
+    in2.setSignal(true)
+    run
+    assert(out.getSignal==true,"true or2gate true = true")
+    
+    in1.setSignal(true)
+    in2.setSignal(false)
+    run
+    assert(out.getSignal==true,"true or2gate false = true")
+
+    in1.setSignal(false)
+    in2.setSignal(true)
+    run
+    assert(out.getSignal==true,"false or2gate true = true")
+    
+    in1.setSignal(false)
+    in2.setSignal(false)
+    run
+    assert(out.getSignal==false,"false or2gate false = false")
+    
     
   }
+  
   test("demux"){
     
   }
