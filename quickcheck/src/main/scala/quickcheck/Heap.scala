@@ -1,6 +1,7 @@
 package quickcheck
 
 import common._
+import org.scalacheck.Gen
 
 trait IntHeap extends Heap {
   override type A = Int

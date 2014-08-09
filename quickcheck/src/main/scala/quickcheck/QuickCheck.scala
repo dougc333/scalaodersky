@@ -15,6 +15,7 @@ abstract class QuickCheckHeap extends Properties("Heap") with IntHeap {
   val smallInteger = Gen.choose(1,10)
   val propSmallInteger = Prop.forAll(smallInteger)(n=>n>=0 && n<=100)
   
+  
   property("min1") = forAll { a: Int =>
     val h = insert(a, empty)
     findMin(h) == a
@@ -26,20 +27,19 @@ abstract class QuickCheckHeap extends Properties("Heap") with IntHeap {
       findMin(insert(m,h))==m
   }
   
-  property("printme")= forAll { 
-    (p:(Int,Int))=> 
-      println("p.1:"+p._1+", p._2:"+p._2)
+  property("printme")= forAll(propSmallInteger,propSmallInteger) { 
+    (a,b)=> 
+      println("a:"+a.toString()+", b:"+b)
       true
-      //val h1 = insert(p._1,empty)
-      //val h2 = insert(p._2,h1)
-      //findMin(h2) == ord.min(p._1,p._2)
   }
   
   property("min2")= forAll {
-    (p:(Int,Int))=>
-      val h1 = insert(p._1, empty)
-      val h2 = insert(p._2, empty)
-      findMin(h2) == ord.min(p._1,p._2)
+    (a:Int,b:Int)=>
+      //println(" min2: p._1:"+p._1+" p._2"+p._2)
+      val h1 = insert(a, empty)
+      val h2 = insert(b, empty)
+      println(" min2 a:"+a+" b"+b+" h1.min"+findMin(h1)+" h2 min:"+findMin(h2))
+      findMin(h2) == ord.min(a,b)
   }
   
   property("empty") = forAll {
@@ -84,8 +84,10 @@ abstract class QuickCheckHeap extends Properties("Heap") with IntHeap {
   
   lazy val genHeap: Gen[H] = 
     for {
-      v<-1
+      v<-Gen.choose(1,10)
+//      println("generating heap v:"+v)
       m<- oneOf(empty, genHeap)
+ //     m<-empty
     } yield insert(v,m)
 
   implicit lazy val arbHeap: Arbitrary[H] = Arbitrary(genHeap)
