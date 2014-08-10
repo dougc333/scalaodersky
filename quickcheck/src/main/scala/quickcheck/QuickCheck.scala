@@ -88,8 +88,13 @@ abstract class QuickCheckHeap extends Properties("Heap") with IntHeap {
 //      println("generating heap v:"+v)
       m<- oneOf(empty, genHeap)
  //     m<-empty
-    } yield insert(v,m)
+    } yield foo(v,m)
 
+  def foo(v:Int, m:H):H={
+      println("v:"+v)
+      insert (v,m)
+  }  
+    
   implicit lazy val arbHeap: Arbitrary[H] = Arbitrary(genHeap)
 
 }

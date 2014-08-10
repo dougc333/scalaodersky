@@ -1,0 +1,42 @@
+create direcgtory /usr/lib/spark/cdk/lib
+copy the avro and cdk-data-set jars manually into /usr/lib/spark/cdk/lib
+modify compute-classpath.sh to pick up the jars in this new directory
+
+import com.cloudera.cdk.data.DatasetDescriptor
+import com.cloudera.cdk.data.DatasetRepositories
+import org.apache.avro.Schema
+import org.apache.avro.Schema.Parser
+import java.io.FileInputStream
+import org.apache.avro.generic._
+
+
+val repo = DatasetRepositories.open("repo:file:/tmp/testscalashellcdk");
+
+case class User(username: String)
+//no work
+//val schema = Schema.createRecord("user",null,null,false)
+
+val schema = new Parser().parse(new FileInputStream("/usr/lib/spark/user.avsc"))
+
+
+//schema.setFields(
+//  Lists.newArrayList(
+//    new Field("username", Schema.create(Type.STRING), null, null)
+//  )
+//)
+
+//add creating a partiion and creating an index; 
+val descriptor = new DatasetDescriptor.Builder().schema(schema).get()
+val users = repo.create("users",descriptor)
+
+val writer = users.newWriter().asInstanceOf[DatasetWriter[GenericRecord]]
+writer.open()
+val builder=new GenericRecordBuilder(schema)
+val record=builder.set("username","user-1").build()
+writer.write(record)
+writer.close()
+
+
+
+//creates object from avsc file. Can store in hcatalog
+

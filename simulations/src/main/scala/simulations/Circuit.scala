@@ -78,23 +78,43 @@ abstract class CircuitSimulator extends Simulator {
       andGate(a3,a4,a5)
       inverter(a5,output)
   }
+  
+  def halfAdder(a:Wire,b:Wire,sum:Wire,carry:Wire){
+    val orOutput,carry,invOutput,andInvert,sum = new Wire
+    orGate(orOutput,a,b)
+    andGate(carry,a,b)
+    inverter(carry,andInvert)
+    andGate(sum,carry,andInvert)
+  }
+  
 
   // demux test case: 
-  // base case: 0 in list 
+  // base case: 0 in list, pass input to output directly
   // 
   def demux(in: Wire, c: List[Wire], out: List[Wire]) {
     c match{
-      case Nil => Nil; println("what is base case with 0 wires?")
+      case Nil => foo(in,out(0))
       case x::xs => println("x:"+x+" xs:"+xs)
-        val a,b,c = new Wire
+        val w1,w2,xinvert = new Wire
         val splitList = out.splitAt(out.size/2)
-        inverter(x,c)
-        andGate(in,x,a)
-        andGate(in,c,b)
-        demux(a,xs,splitList._1)
-        demux(b,xs,splitList._2)
+        inverter(x,xinvert)
+        andGate(in,x,w1)
+        andGate(in,xinvert,w2)
+        demux(w1,xs,splitList._1)
+        demux(w2,xs,splitList._2)
     }
     
+  }
+
+  //output=input
+  def foo(input:Wire,output:Wire) = {
+    //println("base case foo input:"+input.getSignal)
+    input addAction{
+      val w = input.getSignal
+      val o = output.setSignal(w)
+      //println("foo input:"+w+"foo output:"+output.getSignal)
+      ()=>output.setSignal(w)
+    }
   }
 
 }

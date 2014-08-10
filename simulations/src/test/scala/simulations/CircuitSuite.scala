@@ -85,7 +85,28 @@ class CircuitSuite extends CircuitSimulator with FunSuite {
     
   }
   
-  test("demux"){
+  //test base case with no selectors, output=input
+  test("demux base case"){
+    val in,out = new Wire
+    in.setSignal(true)
+    demux(in,Nil,List(out))
+    run
+    //println("demux: input:"+in.getSignal+" out:"+out.getSignal)
+    assert(out.getSignal==true)
+    in.setSignal(false)
+    demux(in,Nil,List(out))
+    run
+    assert(out.getSignal===false)
+  }
+  
+  
+  test("demux recursive case"){
+    val s,in,out0,out1 = new Wire
+    in.setSignal(true)
+    s.setSignal(true)
+    demux(in,List(s),List(out0,out1))
+    run
+    println(out0.getSignal)
     
   }
 }
