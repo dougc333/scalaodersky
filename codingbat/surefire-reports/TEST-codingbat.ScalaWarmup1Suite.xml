@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuite 
-errors="0" failures="0" hostname="localhost.localdomain" name="codingbat.ScalaWarmup1Suite" tests="32" time="0.084" timestamp="2014-07-13T15:33:19">
+errors="0" failures="0" hostname="localhost.localdomain" name="codingbat.ScalaWarmup1Suite" tests="32" time="0.073" timestamp="2014-08-11T21:44:08">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment">
     </property>
@@ -21,12 +21,14 @@ errors="0" failures="0" hostname="localhost.localdomain" name="codingbat.ScalaWa
     <property 
     name="java.vm.specification.name" value="Java Virtual Machine Specification">
 </property>
-    <property name="user.dir" value="/home/dc/TestScalatest"> </property>
+    <property name="user.dir" value="/home/dc/scalaodersky/TestScalatest">
+    </property>
     <property name="java.runtime.version" value="1.7.0_25-b15"> </property>
     <property 
     name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment">
 </property>
-    <property name="basedir" value="/home/dc/TestScalatest"> </property>
+    <property name="basedir" value="/home/dc/scalaodersky/TestScalatest">
+    </property>
     <property 
     name="java.endorsed.dirs" value="/usr/java/jdk1.7.0_25/jre/lib/endorsed">
 </property>
@@ -56,13 +58,13 @@ errors="0" failures="0" hostname="localhost.localdomain" name="codingbat.ScalaWa
     <property name="java.specification.version" value="1.7"> </property>
     <property name="user.name" value="dc"> </property>
     <property 
-    name="java.class.path" value="/home/dc/TestScalatest/target/test-classes:/home/dc/TestScalatest/target/classes:/home/dc/.m2/repository/junit/junit/3.8.1/junit-3.8.1.jar:/home/dc/.m2/repository/org/scala-lang/scala-library/2.10.0/scala-library-2.10.0.jar:/home/dc/.m2/repository/org/scalatest/scalatest_2.10/2.0.M5b/scalatest_2.10-2.0.M5b.jar">
+    name="java.class.path" value="/home/dc/scalaodersky/TestScalatest/target/test-classes:/home/dc/scalaodersky/TestScalatest/target/classes:/home/dc/.m2/repository/junit/junit/3.8.1/junit-3.8.1.jar:/home/dc/.m2/repository/org/scala-lang/scala-library/2.10.0/scala-library-2.10.0.jar:/home/dc/.m2/repository/org/scalatest/scalatest_2.10/2.0.M5b/scalatest_2.10-2.0.M5b.jar">
 </property>
     <property name="java.vm.specification.version" value="1.7"> </property>
     <property name="sun.arch.data.model" value="64"> </property>
     <property name="java.home" value="/usr/java/jdk1.7.0_25/jre"> </property>
     <property 
-    name="sun.java.command" value="org.scalatest.tools.Runner -R /home/dc/TestScalatest/target/classes /home/dc/TestScalatest/target/test-classes -o -f /home/dc/scalaodersky/codingbat/surefire-reports/TestSuite.txt -u /home/dc/scalaodersky/codingbat/surefire-reports/.">
+    name="sun.java.command" value="org.scalatest.tools.Runner -R /home/dc/scalaodersky/TestScalatest/target/classes /home/dc/scalaodersky/TestScalatest/target/test-classes -o -f /home/dc/scalaodersky/codingbat/surefire-reports/TestSuite.txt -u /home/dc/scalaodersky/codingbat/surefire-reports/.">
 </property>
     <property name="java.specification.vendor" value="Oracle Corporation">
     </property>
@@ -87,7 +89,7 @@ errors="0" failures="0" hostname="localhost.localdomain" name="codingbat.ScalaWa
     <property name="sun.cpu.isalist" value=""> </property>
   </properties>
   <testcase 
-  name="simple test" classname="codingbat.ScalaWarmup1Suite" time="0.018">
+  name="simple test" classname="codingbat.ScalaWarmup1Suite" time="0.013">
 </testcase>
   <testcase 
   name="test sleepIn" classname="codingbat.ScalaWarmup1Suite" time="0.0">
@@ -99,7 +101,7 @@ errors="0" failures="0" hostname="localhost.localdomain" name="codingbat.ScalaWa
   name="test sumDouble" classname="codingbat.ScalaWarmup1Suite" time="0.001">
 </testcase>
   <testcase 
-  name="test diff21" classname="codingbat.ScalaWarmup1Suite" time="0.001">
+  name="test diff21" classname="codingbat.ScalaWarmup1Suite" time="0.0">
 </testcase>
   <testcase 
   name="test parrotTrouble" classname="codingbat.ScalaWarmup1Suite" time="0.0">
@@ -111,7 +113,7 @@ errors="0" failures="0" hostname="localhost.localdomain" name="codingbat.ScalaWa
   name="test nearHunderd" classname="codingbat.ScalaWarmup1Suite" time="0.0">
 </testcase>
   <testcase 
-  name="test posNeg" classname="codingbat.ScalaWarmup1Suite" time="0.001">
+  name="test posNeg" classname="codingbat.ScalaWarmup1Suite" time="0.0">
 </testcase>
   <testcase 
   name="test notString" classname="codingbat.ScalaWarmup1Suite" time="0.0">
@@ -120,28 +122,28 @@ errors="0" failures="0" hostname="localhost.localdomain" name="codingbat.ScalaWa
   name="test missingChar" classname="codingbat.ScalaWarmup1Suite" time="0.0">
 </testcase>
   <testcase 
-  name="test frontBack" classname="codingbat.ScalaWarmup1Suite" time="0.013">
+  name="test frontBack" classname="codingbat.ScalaWarmup1Suite" time="0.006">
 </testcase>
   <testcase 
-  name="test front3" classname="codingbat.ScalaWarmup1Suite" time="0.0">
+  name="test front3" classname="codingbat.ScalaWarmup1Suite" time="0.001">
 </testcase>
   <testcase 
   name="test backAround" classname="codingbat.ScalaWarmup1Suite" time="0.0">
 </testcase>
   <testcase 
-  name="test or35" classname="codingbat.ScalaWarmup1Suite" time="0.001">
+  name="test or35" classname="codingbat.ScalaWarmup1Suite" time="0.0">
 </testcase>
   <testcase 
-  name="test front22" classname="codingbat.ScalaWarmup1Suite" time="0.001">
+  name="test front22" classname="codingbat.ScalaWarmup1Suite" time="0.0">
 </testcase>
   <testcase 
   name="test startHi" classname="codingbat.ScalaWarmup1Suite" time="0.0">
 </testcase>
   <testcase 
-  name="test icyHot" classname="codingbat.ScalaWarmup1Suite" time="0.0">
+  name="test icyHot" classname="codingbat.ScalaWarmup1Suite" time="0.001">
 </testcase>
   <testcase 
-  name="test in1020" classname="codingbat.ScalaWarmup1Suite" time="0.0">
+  name="test in1020" classname="codingbat.ScalaWarmup1Suite" time="0.001">
 </testcase>
   <testcase 
   name="test hasTeen" classname="codingbat.ScalaWarmup1Suite" time="0.001">
@@ -153,34 +155,34 @@ errors="0" failures="0" hostname="localhost.localdomain" name="codingbat.ScalaWa
   name="test delDel" classname="codingbat.ScalaWarmup1Suite" time="0.001">
 </testcase>
   <testcase 
-  name="test mixStart" classname="codingbat.ScalaWarmup1Suite" time="0.0">
+  name="test mixStart" classname="codingbat.ScalaWarmup1Suite" time="0.001">
 </testcase>
   <testcase 
-  name="test startOz" classname="codingbat.ScalaWarmup1Suite" time="0.0">
+  name="test startOz" classname="codingbat.ScalaWarmup1Suite" time="0.001">
 </testcase>
   <testcase 
-  name="test intMax" classname="codingbat.ScalaWarmup1Suite" time="0.005">
+  name="test intMax" classname="codingbat.ScalaWarmup1Suite" time="0.004">
 </testcase>
   <testcase 
-  name="test close10" classname="codingbat.ScalaWarmup1Suite" time="0.001">
+  name="test close10" classname="codingbat.ScalaWarmup1Suite" time="0.0">
 </testcase>
   <testcase 
   name="test in3050" classname="codingbat.ScalaWarmup1Suite" time="0.002">
 </testcase>
   <testcase 
-  name="test max1020" classname="codingbat.ScalaWarmup1Suite" time="0.001">
+  name="test max1020" classname="codingbat.ScalaWarmup1Suite" time="0.003">
 </testcase>
   <testcase 
   name="test stringE" classname="codingbat.ScalaWarmup1Suite" time="0.001">
 </testcase>
   <testcase 
-  name="test lastDigit" classname="codingbat.ScalaWarmup1Suite" time="0.0">
+  name="test lastDigit" classname="codingbat.ScalaWarmup1Suite" time="0.001">
 </testcase>
   <testcase 
   name="test endUp" classname="codingbat.ScalaWarmup1Suite" time="0.0">
 </testcase>
   <testcase 
-  name="test everyNth" classname="codingbat.ScalaWarmup1Suite" time="0.002">
+  name="test everyNth" classname="codingbat.ScalaWarmup1Suite" time="0.001">
 </testcase>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

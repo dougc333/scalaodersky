@@ -1,0 +1,39 @@
+package com.example.list
+
+//why are methods in the sealed trait?
+sealed trait LinkedList[+E] {
+  //pass function for each element in list
+  def foreach(f:(E)=>Unit)= {
+    def forEachRec(list:LinkedList[E]) ={
+      list match{
+         case Node(head,tail)=>{
+          f(head) 
+          forEachRec(tail)
+         }
+         case Empty =>{}
+      }
+    }
+    forEachRec(this)
+  }
+//  def ::[B>E](element B):LinkedList[B]= ???
+  def map[R](f: E=>R):LinkedList[R] = ???
+  def reverse():LinkedList[E] = ???
+  def foldRight[B](accumulator:B)(f:(E,B)=>B):B = ???
+  def filter(f:(E)=>Boolean):LinkedList[E] = ???
+  def foldLeft[B](accumulator:B)(f:(B,E)=> B):B = ???
+  def find(p:(E)=>Boolean):Option[E] = ???
+}
+
+object LinkedList {
+  def apply[E](items:E*):LinkedList[E] = ???
+  def sum(numbers:LinkedList[Int]):Int = ???
+  def join(numbers:LinkedList[String]):String = ???
+
+}
+  
+case class Node[+E]( head : E, tail : LinkedList[E]  ) extends LinkedList[E]
+case object Empty extends LinkedList[Nothing] {
+ val size=0
+}
+
+
