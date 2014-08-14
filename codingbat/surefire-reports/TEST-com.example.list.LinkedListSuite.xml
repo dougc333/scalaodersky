@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuite 
-errors="0" failures="0" hostname="localhost.localdomain" name="org.scalatest.tools.DiscoverySuite" tests="0" time="0.095" timestamp="2014-08-13T19:11:55">
+errors="0" failures="0" hostname="localhost.localdomain" name="com.example.list.LinkedListSuite" tests="9" time="0.084" timestamp="2014-08-13T19:11:55">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment">
     </property>
@@ -88,6 +88,33 @@ errors="0" failures="0" hostname="localhost.localdomain" name="org.scalatest.too
     <property name="sun.desktop" value="gnome"> </property>
     <property name="sun.cpu.isalist" value=""> </property>
   </properties>
+  <testcase 
+  name="test" classname="com.example.list.LinkedListSuite" time="0.027">
+</testcase>
+  <testcase 
+  name="test foreach" classname="com.example.list.LinkedListSuite" time="0.008">
+</testcase>
+  <testcase 
+  name="test cons" classname="com.example.list.LinkedListSuite" time="0.002">
+</testcase>
+  <testcase 
+  name="test map" classname="com.example.list.LinkedListSuite" time="0.003">
+</testcase>
+  <testcase 
+  name="test reverse" classname="com.example.list.LinkedListSuite" time="0.004">
+</testcase>
+  <testcase 
+  name="test foldRight" classname="com.example.list.LinkedListSuite" time="0.003">
+</testcase>
+  <testcase 
+  name="test filter" classname="com.example.list.LinkedListSuite" time="0.003">
+</testcase>
+  <testcase 
+  name="test foldLeft" classname="com.example.list.LinkedListSuite" time="0.002">
+</testcase>
+  <testcase 
+  name="test find" classname="com.example.list.LinkedListSuite" time="0.001">
+</testcase>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
