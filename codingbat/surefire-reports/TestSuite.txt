@@ -1,17 +1,7 @@
-[36mRun starting. Expected test count is: 9[0m
+[36mRun starting. Expected test count is: 0[0m
 [32mDiscoverySuite:[0m
-[32mLinkedListSuite:[0m
-[32m- test[0m
-[32m- test foreach[0m
-[32m- test cons[0m
-[32m- test map[0m
-[32m- test reverse[0m
-[32m- test foldRight[0m
-[32m- test filter[0m
-[32m- test foldLeft[0m
-[32m- test find[0m
-[36mRun completed in 322 milliseconds.[0m
-[36mTotal number of tests run: 9[0m
-[36mSuites: completed 2, aborted 0[0m
-[36mTests: succeeded 9, failed 0, canceled 0, ignored 0, pending 0[0m
+[36mRun completed in 292 milliseconds.[0m
+[36mTotal number of tests run: 0[0m
+[36mSuites: completed 1, aborted 0[0m
+[36mTests: succeeded 0, failed 0, canceled 0, ignored 0, pending 0[0m
 [32mAll tests passed.[0m

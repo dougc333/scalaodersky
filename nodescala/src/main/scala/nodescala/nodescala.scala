@@ -10,6 +10,7 @@ import scala.collection.JavaConversions._
 import java.util.concurrent.{Executor, ThreadPoolExecutor, TimeUnit, LinkedBlockingQueue}
 import com.sun.net.httpserver.{HttpExchange, HttpHandler, HttpServer}
 import java.net.InetSocketAddress
+import scala.util.Try
 
 /** Contains utilities common to the NodeScala© framework.
  */
@@ -31,6 +32,7 @@ trait NodeScala {
    */
   private def respond(exchange: Exchange, token: CancellationToken, response: Response): Unit = {
     while(token.nonCancelled && response.hasNext){
+      println("respond writing")
       exchange.write(response.next)
     }
     exchange.close()
@@ -48,10 +50,12 @@ trait NodeScala {
    */
   def start(relativePath: String)(handler: Request => Response): Subscription = {
     val listener = createListener(relativePath)
+    println("server startting relativePath:"+relativePath)
     listener.start()
     Future.run(){ ct=>
       async {
           while(ct.nonCancelled){
+            println("blocking on listener")
             val (req,exchange) = await {listener.nextRequest()}
             respond(exchange,ct,handler(req))
           }
@@ -92,6 +96,7 @@ object NodeScala {
 
   object Exchange {
     def apply(exchange: HttpExchange) = new Exchange {
+      println("exchange writing responsebody")
       val os = exchange.getResponseBody()
       exchange.sendResponseHeaders(200, 0L)
 
@@ -128,6 +133,7 @@ object NodeScala {
      *  @return                the promise holding the pair of a request and an exchange object
      */
     def nextRequest(): Future[(Request, Exchange)] = {
+      println("nextRequest")
       val p = Promise[(Request,Exchange)]()
       createContext{
         exchange=>

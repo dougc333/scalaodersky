@@ -7,7 +7,7 @@ import ExecutionContext.Implicits.global
 import scala.async.Async.{async, await}
 import scala.util._
 
-object Main {
+object Main { 
 
   def main(args: Array[String]) {
     // TO IMPLEMENT
@@ -19,8 +19,9 @@ object Main {
     // TO IMPLEMENT
     // 2. create a future that expects some user input `x`
     //    and continues with a `"You entered... " + x` message
+    // how to make reenterant?
     val userInterrupted: Future[String] = {
-      Future.userInput("Please enter").continue{
+      Future.userInput("Please enter:").continue{
         case Success(msg)=> "You entered ..." + msg
         case _ => "Failed to read"
       }
@@ -42,7 +43,7 @@ object Main {
     // 5. unsubscribe from the server
     terminationRequested onSuccess {
       case msg => {
-        println(msg)
+        println("termination requested:"+msg)
         myServerSubscription.unsubscribe
       }
     }
