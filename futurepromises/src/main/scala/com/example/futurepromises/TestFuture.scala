@@ -5,6 +5,7 @@ import scala.concurrent._
 import java.io._
 import ExecutionContext.Implicits.global
 
+
 object TestFuture{
   
 
@@ -13,7 +14,7 @@ object TestFuture{
      val s = "hello"
      val f = Future{
        Thread.sleep(10000)
-       s+"future"
+       s+"future after sleep"
      }
      println("test print after future declared")
      f.onSuccess{case s=>println(s)}
