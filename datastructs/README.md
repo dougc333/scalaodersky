@@ -6,10 +6,9 @@ linkedlist taken from: https://github.com/mauricio/list-tutorial/blob/master/src
 and: http://mauricio.github.io/2013/11/25/learning-scala-by-building-scala-lists.html
 
 linkedlist  design:
-1) create a sealed trait or abstract class. 
-The object set week 3 hw uses abstract class PracticeSet and TweetList is a trait
-when to use either? 
-hw2/3 dont give enough practice with fold/left/right and map/recursion
+1) apply() required for scala objects to apply functions to
+2) foreach() required for map/flatmap to work via traversable
+
 
 
 the test code only uses scalatest and not a higher level framework like specs2 or scalacheck
