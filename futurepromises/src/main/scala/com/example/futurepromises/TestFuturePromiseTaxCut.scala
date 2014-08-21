@@ -16,7 +16,6 @@ object TestFuturePromiseTaxCut {
   def main(args:Array[String]){
     println("start TestFuturePromiseTaxCut")
     val taxcut = Promise[TaxCut]()
-    val taxcut2:Promise[TaxCut] = Promise()
     val taxcutF:Future[TaxCut] = taxcut.future
     //set the promise
     taxcut.success(TaxCut(20))

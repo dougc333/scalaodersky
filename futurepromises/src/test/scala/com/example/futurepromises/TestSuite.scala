@@ -1,3 +1,4 @@
+package com.example.futurepromises
 
 import org.scalatest.FunSuite
 

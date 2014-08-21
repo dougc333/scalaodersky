@@ -5,9 +5,9 @@ package com.example.futurepromise
 import scala.concurrent.ExecutionContext.Implicits.global
 import java.io.{FileWriter,File,PrintWriter,BufferedWriter}
 import org.scalatest.FunSuite
-import com.example.futurepromises.Promise
+
+import com.example.futurepromises.sepnamespace.{Promise,Future,DefaultFuture}
 import scala.util.{Failure,Try,Success}
-import com.example.futurepromises.DefaultFuture
 import scala.collection.mutable.ArrayBuffer
 import scala.concurrent.Future
 

@@ -1,0 +1,37 @@
+package com.example.futurepromises
+
+import scala.concurrent._
+import scala.Util.{Try,Success,Failure}
+
+case class TaxCut(reduction:Int)
+
+object Government{
+  def redeemCampaignPledge():Future[TaxCut]={
+    val p = Promise[TaxCut]()
+    Future{
+      println("starting the new leg period")
+      Thread.sleep(2000)
+      p.success(TaxCut(20))
+      println("reduced the taxes you must elect us!!!!!")
+    }
+    p.future
+  }
+}
+
+val taxCutF:Future[TaxCut] = Government.redeemCampaignPledge()
+
+case class LameExcuse(msg: String) extends Exception(msg)
+object Government {
+  def redeemCampaignPledge(): Future[TaxCut] = {
+       val p = Promise[TaxCut]()
+       Future {
+         println("Starting the new legislative period.")
+         Thread.sleep(2000)
+         p.failure(LameExcuse("global economy crisis"))
+         println("We didn't fulfill our promises, but surely they'll understand.")
+       }
+       p.future
+     }
+}
+
+

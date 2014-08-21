@@ -85,7 +85,7 @@ class DefaultFuture[T] extends Future[T] {
 
 
   def map[S](f:(T)=>S)(implicit executor:ExecutionContext):Future[S] = {
-    val p = DefaultPromise[S]()
+    val p = Promise[S]()
     onComplete{
       v=>p complete (v map f)
     }
@@ -93,7 +93,7 @@ class DefaultFuture[T] extends Future[T] {
   }
 
   def flatMap[S](f:(T)=>Future[S])(implicit executor:ExecutionContext):Future[S] = {
-    val p = DefaultPromise[S]()
+    val p = Promise[S]()
     onComplete{
       case Success(v)=>
        try{
