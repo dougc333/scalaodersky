@@ -76,14 +76,11 @@ class FuturePromiseSuite extends FunSuite {
   }
   
   test("scala promise write to disk"){
-    val p = Promise[File]{
-      writeToFile()
-    }
+    val p = scala.concurrent.Promise[File]
+    val pF:Future[File] = p.future
+    p.success(writeToFile)
     //pull the future out and test for success
-    val pFuture = p.future
-    pFuture onSuccess{
-      println("file created success")
-    }
+    pF onSuccess{case x => println(x.toURI())}
   }
 
   def writeToFile():File={ 

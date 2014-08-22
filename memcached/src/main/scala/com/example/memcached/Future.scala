@@ -1,4 +1,4 @@
-package com.example.futurepromises.sepnamespace
+package com.example.memcached
 
 
 import scala.util.{Try,Success,Failure}

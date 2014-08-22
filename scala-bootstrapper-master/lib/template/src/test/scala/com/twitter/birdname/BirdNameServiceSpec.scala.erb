@@ -1,0 +1,14 @@
+package com.twitter.birdname
+
+class BirdNameServiceSpec extends AbstractSpec {
+  describe("BirdNameService") {
+
+    // TODO: Please implement your own tests.
+
+    it("sets a key, then gets it") {
+      birdName.put("name", "bluebird")()
+      assert(birdName.get("name")() === "bluebird")
+      intercept[Exception] { birdName.get("what?")() }
+    }
+  }
+}

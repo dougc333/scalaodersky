@@ -4,11 +4,10 @@ import org.apache.hadoop.fs._
 import org.apache.hadoop.conf._
 import scala.concurrent._
 import java.io._
-import org.apache.hadoop.fs.Path
 import ExecutionContext.Implicits.global
 
 
-//futures and promises
+//cant get basic HDFS to work, not worth debugging for now
 object TestHDFS {
   
   //future for read from hdfs

@@ -2,7 +2,7 @@ package com.example.futurepromises
 
 import java.io._
 
-
+//shows how to use throwable in try/catch exception block
 object Hello{
   def main(args:Array[String]){
     println("asdfsadf")

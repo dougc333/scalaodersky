@@ -3,6 +3,8 @@ package com.example.futurepromises
 import scala.concurrent._
 import scala.Util.{Try,Success,Failure}
 
+
+//this example doesnt show anything different, delete
 case class TaxCut(reduction:Int)
 
 object Government{
@@ -21,6 +23,7 @@ object Government{
 val taxCutF:Future[TaxCut] = Government.redeemCampaignPledge()
 
 case class LameExcuse(msg: String) extends Exception(msg)
+
 object Government {
   def redeemCampaignPledge(): Future[TaxCut] = {
        val p = Promise[TaxCut]()
@@ -31,7 +34,7 @@ object Government {
          println("We didn't fulfill our promises, but surely they'll understand.")
        }
        p.future
-     }
+  }
 }
 
 
