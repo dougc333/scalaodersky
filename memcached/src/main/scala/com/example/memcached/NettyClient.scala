@@ -1,6 +1,6 @@
 package com.example.memcached
 
-import io.netty.channel.{ChannelFutureListener,ChannelFuture,SimpleChannelInboundHandler}
+import io.netty.channel.{ChannelOption,ChannelInitializer,ChannelFutureListener,ChannelFuture,SimpleChannelInboundHandler}
 import scala.concurrent.ExecutionContext.Implicits.global
 import io.netty.util.internal.logging.{Slf4JLoggerFactory, InternalLoggerFactory}
 import io.netty.channel.nio.NioEventLoopGroup
@@ -12,16 +12,18 @@ import org.slf4j.LoggerFactory
 
 
 object NettyClient {
-  InternalLoggerFactory.setDefaultFactory(new Slf4jLoggerFactory())
+ // InternalLoggerFactory.setDefaultFactory(new Slf4JLoggerFactory())
   val DefaultEventLoopGroup = new NioEventLoopGroup()
-  val log = LoggerFactory.getlogger(classOf[NettyClient])
+ // val log = LoggerFactory.getLogger(classOf[NettyClient])
+  
   def createBootstrap(handler:ChannelHandler)=new Bootstrap()
   .group(DefaultEventLoopGroup)
   .channel(classOf[NioSocketChannel])
   .option[java.lang.Boolean](ChannelOption.SO_KEEPALIVE,true)
   .handler(new ChannelInitializer[io.netty.channel.Channel]{
-    def initChannel(ch:Channel){
-      ch.pipeline().addLast(new MemcachedDecoder, new MemcachedEncoder, handler)
+    def initChannel(ch:io.netty.channel.Channel){
+      //MemcachedEncoder bad
+      ch.pipeline().addLast(new MemcachedDecoder,new MemcachedEncoder,  handler)
     }
   })
 }
@@ -32,23 +34,25 @@ extends SimpleChannelInboundHandler[ServerResponse] with Client {
   
   private val bootstrap = createBootstrap(this)
   private val connectPromise = Promise[Client]()
-  private val disconnectFuture:Future[Client]=null
+  private var disconnectFuture:Future[Client]=null
   private var currentContext:ChannelHandlerContext=null
   private var commandPromise:Promise[ServerResponse]=null
   
   def set(key:String, bytes:Array[Byte],flags:Int=0, expiration:Int=0):Future[StatusResponse]=
     this.write(new SetRequest(key,bytes,flags, expiration)).castTo[StatusResponse]
   
-  def get(key:string):Future[GetResponse]=
+  def get(key:String):Future[GetResponse]=
     this.write(new GetRequest(key)).castTo[GetResponse]
   
   def delete(key:String)=
     this.write(new DeleteRequest(key)).castTo[StatusResponse]
   
   def connect():Future[Client]={
+    println("nettyclient connect")
     this.bootstrap.connect(host,port).onFailure{
-      case e:Throwable=>this.connectPromise.failure(e)
+      case e:Throwable=>println("connect failure host:"+host+" port:"+port);this.connectPromise.failure(e)
     }
+    println("connect sending future")
    this.connectPromise.future
   }
   
@@ -67,7 +71,7 @@ extends SimpleChannelInboundHandler[ServerResponse] with Client {
   
   private def write(request:ClientRequest):Future[ServerResponse]={
     this.synchronized{
-      if(this.commandPromse!=null){
+      if(this.commandPromise!=null){
         throw new BusyClientException
       }
       
@@ -85,22 +89,23 @@ extends SimpleChannelInboundHandler[ServerResponse] with Client {
     this.synchronized{
       if(this.commandPromise!=null){
         if(msg.isError){
-          val exception = new CommandFailedException(msg)
+          //typo in the class. one m instead of 2
+          val exception = new ComandFailedException(msg)
           exception.fillInStackTrace()
-          tihs.commandPromise.failure(Exception)
+          this.commandPromise.failure(exception)
         }else{
           this.commandPromise.success(msg)
         }
         this.commandPromise=null
       }else{
-        log.error()
+  //      log.error("channelRead0 error",msg)
       }
       
     }
   }
   
   override def exceptionCaught(ctx:ChannelHandlerContext, cause:Throwable){
-    log.error("Connection failed",cause)
+   // log.error("Connection failed",cause)
     this.synchronized{
       if(this.commandPromise!=null){
         this.commandPromise.tryFailure(cause)

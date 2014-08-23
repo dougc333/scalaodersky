@@ -23,7 +23,7 @@ class MemcachedDecoder extends ByteToMessageDecoder{
       val opaque = in.readInt()
       val cas = in.readLong()
       
-      if(in.readableBytes()>=body.length){
+      if(in.readableBytes()>=bodyLength){
         (commandCode: @switch) match{
           case Keys.Get => {
             
@@ -42,13 +42,13 @@ class MemcachedDecoder extends ByteToMessageDecoder{
               None->Some(new String(bytes, CharsetUtil.US_ASCII))
             }
             
-            out.add(new GetResponse())
+            out.add(new GetResponse(value._1, status, flags, opaque, cas, value._2))
             
           }
           
           case _ if extrasLength==0=>{
             val body=if(bodyLength>0){
-              Some(in.toString(CharSetUtil.US_ASCII))
+              Some(in.toString(CharsetUtil.US_ASCII))
             }else{
               None
             }

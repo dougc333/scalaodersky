@@ -34,8 +34,8 @@ sealed abstract class ServerResponse(
 class StatusResponse(command:Int, status:Int, opaque:Int, cas:Long, val body:Option[String]=None) 
 extends ServerResponse(command,status,opaque, cas)
 
-class GetResponse(val value:Option[Array[Byte]], status:Int, val flags:Int, opaque:Int, cas:Long, body:Option[String]) 
-extends StatusResonse(Keys.Get, status, opaque, cas, body)
+class GetResponse(val value:Option[Array[Byte]], status:Int, val flags:Int, opaque:Int, cas:Long, body:Option[String]=None) 
+extends StatusResponse(Keys.Get, status, opaque, cas, body)
 
 
 

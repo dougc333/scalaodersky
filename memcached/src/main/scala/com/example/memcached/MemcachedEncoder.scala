@@ -1,19 +1,19 @@
 package com.example.memcached
 
 
-import io.netty.handler.codec.ByteToMessageDecoder
+import io.netty.handler.codec.MessageToByteEncoder
 import io.netty.channel.ChannelHandlerContext
 import io.netty.buffer.ByteBuf
 import java.util
 import scala.annotation.switch
 import io.netty.util.CharsetUtil
 
-class MemcachedEncoder {
+class MemcachedEncoder extends MessageToByteEncoder[ClientRequest]  {
   def encode(ctx:ChannelHandlerContext, msg:ClientRequest, out:ByteBuf){
-    (msg.code:@swtich) match{
-      case Keys.Set => encode(out, msg.asInstanceOf[SetRequest])
-      case Keys.Get => encode(out, msg.asInstanceOf[GetRequest])
-      case Keys.Delete => encode(out, msg.asInstanceOf[DeleteRequest])
+    (msg.code: @switch) match{
+      case Keys.Set => encodeSet(out, msg.asInstanceOf[SetRequest])
+      case Keys.Get => encodeGet(out, msg.asInstanceOf[GetRequest])
+      case Keys.Delete => encodeDelete(out, msg.asInstanceOf[DeleteRequest])
       case _ => throw new UnknownRequestException(msg)
     }
   }
@@ -39,7 +39,7 @@ class MemcachedEncoder {
     encodeKeyMessage(buffer, get.key, Keys.Get)
   }
   def encodeDelete(buffer:ByteBuf, delete:DeleteRequest){
-    encodeKeyMessage(buffer,get.key,Keys.Delete)
+    encodeKeyMessage(buffer,delete.key,Keys.Delete)
   }
   def encodeKeyMessage(buffer:ByteBuf, keyName:String, code:Int){
     val key = keyName.getBytes(CharsetUtil.US_ASCII)
