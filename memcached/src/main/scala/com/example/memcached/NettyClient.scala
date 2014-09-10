@@ -22,7 +22,7 @@ object NettyClient {
   .option[java.lang.Boolean](ChannelOption.SO_KEEPALIVE,true)
   .handler(new ChannelInitializer[io.netty.channel.Channel]{
     def initChannel(ch:io.netty.channel.Channel){
-      //MemcachedEncoder bad
+      println("initchannel")
       ch.pipeline().addLast(new MemcachedDecoder,new MemcachedEncoder,  handler)
     }
   })
@@ -119,11 +119,5 @@ extends SimpleChannelInboundHandler[ServerResponse] with Client {
     this.currentContext=ctx
     this.connectPromise.success(this)
   }
-  
-  
-  
-  
-  
-  
   
 }

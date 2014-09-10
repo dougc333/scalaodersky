@@ -1,0 +1,27 @@
+[0m[[0minfo[0m] [0m[32mWikipediaApiTest:[0m[0m
+[0m[[0minfo[0m] [0m[31m- WikipediaApi should make the stream valid using sanitized *** FAILED ***[0m[0m
+[0m[[0minfo[0m] [0m[31m  scala.NotImplementedError: an implementation is missing[0m[0m
+[0m[[0minfo[0m] [0m[31m  at scala.Predef$.$qmark$qmark$qmark(Predef.scala:252)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at suggestions.gui.WikipediaApi$StringObservableOps.sanitized(WikipediaApi.scala:40)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at suggestions.WikipediaApiTest$$anonfun$1.apply$mcV$sp(WikipediaApiTest.scala:38)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at suggestions.WikipediaApiTest$$anonfun$1.apply(WikipediaApiTest.scala:36)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at suggestions.WikipediaApiTest$$anonfun$1.apply(WikipediaApiTest.scala:36)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at org.scalatest.FunSuite$$anon$1.apply(FunSuite.scala:1265)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at org.scalatest.Suite$class.withFixture(Suite.scala:1974)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at suggestions.WikipediaApiTest.withFixture(WikipediaApiTest.scala:19)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at org.scalatest.FunSuite$class.invokeWithFixture$1(FunSuite.scala:1262)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at org.scalatest.FunSuite$$anonfun$runTest$1.apply(FunSuite.scala:1271)[0m[0m
+[0m[[0minfo[0m] [0m[31m  ...[0m[0m
+[0m[[0minfo[0m] [0m[31m- WikipediaApi should correctly use concatRecovered *** FAILED ***[0m[0m
+[0m[[0minfo[0m] [0m[31m  scala.NotImplementedError: an implementation is missing[0m[0m
+[0m[[0minfo[0m] [0m[31m  at scala.Predef$.$qmark$qmark$qmark(Predef.scala:252)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at suggestions.gui.WikipediaApi$ObservableOps.concatRecovered(WikipediaApi.scala:87)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at suggestions.WikipediaApiTest$$anonfun$3.apply$mcV$sp(WikipediaApiTest.scala:57)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at suggestions.WikipediaApiTest$$anonfun$3.apply(WikipediaApiTest.scala:54)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at suggestions.WikipediaApiTest$$anonfun$3.apply(WikipediaApiTest.scala:54)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at org.scalatest.FunSuite$$anon$1.apply(FunSuite.scala:1265)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at org.scalatest.Suite$class.withFixture(Suite.scala:1974)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at suggestions.WikipediaApiTest.withFixture(WikipediaApiTest.scala:19)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at org.scalatest.FunSuite$class.invokeWithFixture$1(FunSuite.scala:1262)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at org.scalatest.FunSuite$$anonfun$runTest$1.apply(FunSuite.scala:1271)[0m[0m
+[0m[[0minfo[0m] [0m[31m  ...[0m[0m
