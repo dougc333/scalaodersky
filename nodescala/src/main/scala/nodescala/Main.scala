@@ -19,7 +19,7 @@ object Main {
     // TO IMPLEMENT
     // 2. create a future that expects some user input `x`
     //    and continues with a `"You entered... " + x` message
-    // how to make reenterant?
+    // how to make reenterant? can only execute a future once, add function after success print
     val userInterrupted: Future[String] = {
       Future.userInput("Please enter:").continue{
         case Success(msg)=> "You entered ..." + msg
