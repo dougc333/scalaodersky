@@ -53,7 +53,8 @@ package object nodescala {
     def any[T](fs: List[Future[T]]): Future[T] = {
       val p = Promise[T]()
       for{f<-fs} f.onComplete {
-        p.tryComplete(_)}
+        p.tryComplete(_)
+      }
       p.future
     }
     /** Returns a future with a unit value that is completed after time `t`.
