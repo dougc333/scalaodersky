@@ -77,14 +77,6 @@ class FunSetSuite extends FunSuite {
     val s1 = singletonSet(1)
     val s2 = singletonSet(2)
     val s3 = singletonSet(3)
-    
-    val i1=union(singletonSet(1),singletonSet(2))
-    val i2=union(singletonSet(2),singletonSet(3))
-    
-    val inRange = (x:Int,a:Int,b:Int)=>if (x<b && x>a) true else false
-
-    val odd = (x:Int)=>(x%3==0 && x<100)
-    val evenNumbers = ((x: Int) => x % 2 == 0)
   }
 
   /**
@@ -94,7 +86,7 @@ class FunSetSuite extends FunSuite {
    * Once you finish your implementation of "singletonSet", exchange the
    * function "ignore" by "test".
    */
-  test("singletonSet(1) contains 1") {
+  ignore("singletonSet(1) contains 1") {
     
     /**
      * We create a new instance of the "TestSets" trait, this gives us access
@@ -106,13 +98,10 @@ class FunSetSuite extends FunSuite {
        * the test fails. This helps identifying which assertion failed.
        */
       assert(contains(s1, 1), "Singleton")
-      assert(contains(s2, 2), "Singleton")
-      assert(contains(s3, 3), "Singleton")
-      
     }
   }
 
-  test("union contains all elements") {
+  ignore("union contains all elements") {
     new TestSets {
       val s = union(s1, s2)
       assert(contains(s, 1), "Union 1")
@@ -120,66 +109,4 @@ class FunSetSuite extends FunSuite {
       assert(!contains(s, 3), "Union 3")
     }
   }
-  
-  test("intersect "){
-    new TestSets{
-      val intTest = intersect(s1,s2)
-      assert(!contains(intTest,1),"intersect 1")
-      assert(!contains(intTest,2),"intersect 1")
-      assert(!contains(intTest,3),"intersect 1")
-      val intTest2 =intersect(i1,i2)
-      assert(contains(intTest2,2),"intersect 2")
-    }
-  }
-  
-  test("diff"){
-    print("i1:")
-    new TestSets{
-      val d1 = diff(i1,i2)
-      assert(contains(d1,1),"diff1")
-      assert(!contains(d1,2),"diff1")
-      assert(!contains(d1,3),"diff1")
-      
-      val d2 = diff(i2,i1)
-      assert(!contains(d2,1),"diff2")
-      assert(!contains(d2,2),"diff2")
-      assert(contains(d2,3),"diff2")
-      
-    }
-  }
-  
-  test("filter"){
-   new TestSets {
-      val s = filter(evenNumbers, (x => x > 2 && x < 6))
-      
-      assert(!contains(s, 2), "Filter 2")
-      assert(contains(s, 4),  "Filter 4")
-      assert(!contains(s, 6), "Filter 6")
-    }
-  }
-  
-  test("forall") {
-    new TestSets {
-      assert(forall(evenNumbers, (x => x % 2 == 0)), "Forall 1")
-      assert(!forall(evenNumbers, (x => x % 2 == 1)), "Forall 2")
-    }
-  }
-  
-  test("exists") {
-    new TestSets {
-      val e = exists(evenNumbers,((x) => (x == 2)))
-      assert(e, "exists1")
-    }
-  }
-  
-  test("map") {
-    new TestSets {
-      val mapped = map(s1, (x => x + 1))
-
-      assert(!contains(mapped, 1), "Map 1")
-      assert(contains(mapped, 2), "Map 2")
-    }
-  }
-  
-  
 }

@@ -188,8 +188,8 @@ object ProgFunBuild extends Build {
   // all dependencies are downloaded, because we pack the .jar files into the handout.
   lazy val createHandoutSetting = createHandout <<= inputTask { argTask =>
     (argTask, currentProject, baseDirectory, handoutFiles, submitProjectName, target, projectDetailsMap, compile in Test) map { (args, currentProject, basedir, filesFinder, submitProject, targetDir, detailsMap, _) =>
-      if (currentProject != "")
-        sys.error("\nthe 'currentProject' setting in build.sbt needs to be \"\" in order to create a handout")
+      if (currentProject != "" && currentProject != submitProject)
+        sys.error("\nthe 'currentProject' setting in build.sbt needs to be \"\" or equal to submitProject in order to create a handout")
       else args match {
         case handoutProjectName :: eclipseDone :: Nil if eclipseDone == "eclipseWasCalled" =>
           if (handoutProjectName != submitProject)
@@ -637,17 +637,12 @@ object ProgFunBuild extends Build {
     val Value(projectDetails) = projectDetailsR
     apiKeyR match {
       case Value(apiKey) if (!apiKey.isEmpty) =>
-        val apiKeyAugmented = apiKey + (projectDetails.courseId match { // OMG what a hack!!!
-          case "progfun-epfl-001" => "-epfl"
-          case "reactive-001" => "-react"
-          case "progfun-004" => ""
-        })
         logOpt.foreach(_.debug("Course Id for submission: " + projectDetails.courseId))
-        logOpt.foreach(_.debug("Corresponding API key: " + apiKeyAugmented))
+        logOpt.foreach(_.debug("Corresponding API key: " + apiKey))
         // if build failed early, we did not even get the api key from the submission queue
         if (!GradingFeedback.apiState.isEmpty && !Settings.offlineMode) {
           val scoreString = "%.2f".format(GradingFeedback.totalScore)
-          CourseraHttp.submitGrade(GradingFeedback.feedbackString(uuid), scoreString, GradingFeedback.apiState, apiKeyAugmented, projectDetails, logOpt) match {
+          CourseraHttp.submitGrade(GradingFeedback.feedbackString(uuid), scoreString, GradingFeedback.apiState, apiKey, projectDetails, logOpt) match {
             case Failure(msgs) =>
               sys.error(msgs.list.mkString("\n"))
             case _ =>

@@ -36,7 +36,7 @@ object BinaryTreeSet {
     * is completed.
     */
   case class Remove(requester: ActorRef, id: Int, elem: Int) extends Operation
-
+  case class IsLeaf(requester: ActorRef, id: Int, elem: Int) extends Operation
   /** Request to perform garbage collection*/
   case object GC
 
@@ -44,7 +44,7 @@ object BinaryTreeSet {
     * `result` is true if and only if the element is present in the tree.
     */
   case class ContainsResult(id: Int, result: Boolean) extends OperationReply
-  
+  case class IsLeafResult(id: Int, result: Boolean) extends OperationReply
   /** Message to signal successful completion of an insert or remove operation. */
   case class OperationFinished(id: Int) extends OperationReply
 
@@ -73,7 +73,7 @@ class BinaryTreeSet extends Actor {
     }
     case GC => {
       val destination = createRoot
-      context.become(garbageCollection(destination))
+      context.become(garbageCollecting(destination))
       root ! CopyTo(destination)
     }
   }
@@ -83,7 +83,7 @@ class BinaryTreeSet extends Actor {
     * `newRoot` is the root of the new binary tree where we want to copy
     * all non-removed elements into.
     */
-  def garbageCollecting(newRoot: ActorRef): Receive = {
+ def garbageCollecting(newRoot: ActorRef): Receive = {
     case GC=>None
     case op:Operation=>{
       pendingQueue = pendingQueue.enqueue(op)
@@ -137,7 +137,7 @@ class BinaryTreeNode(val elem: Int, initiallyRemoved: Boolean) extends Actor {
        subtrees.get(Left) match{
          case Some(left) => left ! message
          case None => {
-           subtrees = subtrees.updated(Left, new Actor(id,elem))
+           subtrees = subtrees.updated(Left, newActor(id,elem))
            sender ! done
          }
        }
@@ -156,7 +156,7 @@ class BinaryTreeNode(val elem: Int, initiallyRemoved: Boolean) extends Actor {
     case message @ Contains(sender,id,elem) => {
       val notContained = ContainsResult(id,false)
       if(this.elem==elem){
-        if(this.removed = false) sender ! ContainsResult(id,true)
+        if(this.removed == false) sender ! ContainsResult(id,true)
         else sender ! notContained
       }
       else if (this.elem>elem){
@@ -194,7 +194,8 @@ class BinaryTreeNode(val elem: Int, initiallyRemoved: Boolean) extends Actor {
     }//end case remove
    
     case CopyTo(treeNode) => copy(treeNode)
-    case message@IsLeaf(sender,id,_)=>{
+    
+    case message @ IsLeaf(sender,id,_)=>{
       sender ! IsLeafResult(id,subtrees.size==0)
     }
 
@@ -206,7 +207,7 @@ class BinaryTreeNode(val elem: Int, initiallyRemoved: Boolean) extends Actor {
     * `insertConfirmed` tracks whether the copy of this node to the new tree has been confirmed.
     */
   def copying(expected: Set[ActorRef], insertConfirmed: Boolean): Receive = {
-    case message @ CopyFinished => expected.size.match {
+    case message @ CopyFinished => expected.size match {
       case 1 if insertConfirmed => context.parent ! CopyFinished
       case 0 if insertConfirmed => context.parent ! CopyFinished
       case _ => context.become(copying(expected-sender, insertConfirmed))
@@ -225,7 +226,7 @@ class BinaryTreeNode(val elem: Int, initiallyRemoved: Boolean) extends Actor {
   }
 
   def copy(destination:ActorRef) = {
-    val expected =- (subtrees collect {case(_,child) => child}).toSet
+    val expected = (subtrees collect {case(_,child) => child}).toSet
     this.removed match{
       case true if expected.isEmpty=> context.parent ! CopyFinished
       case _ => {
@@ -239,6 +240,4 @@ class BinaryTreeNode(val elem: Int, initiallyRemoved: Boolean) extends Actor {
     }//end match
   }//end copy
 
-  
-  
 }
