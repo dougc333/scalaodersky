@@ -59,7 +59,7 @@ object Main {
    */
   def countChange(amount: Int, list: List[Int]): Int = {
    	def countChange(amount:Int,list:List[Int]):Int={
-	  println("amount:"+ amount+ "list:"+list)
+	 // println("amount:"+ amount+ "list:"+list)
 	  if (amount==0) 1 
 	  else if(amount<0) 0
 	  else if(list.isEmpty) 0 
@@ -67,7 +67,16 @@ object Main {
    	}
 	countChange(amount,list)
   }
+  
+  
+  def subsets(){
     
+  }
+  
+  def combination(){
+    
+  }
+  
   /*
    * Additional practice, factorial
    */
@@ -96,11 +105,11 @@ object Main {
       print("file:"+startDir)
     }
   }
-  
-  /*
-   * Hamming distance, print out all strings k hamming distance from str1
-   */
-  def hamming(str1:String,k:Int){
+
+  //does it make sense to do a foldLeft on filelisting? 
+  def fileListingFoldLeft(file:File){
     
   }
-}
+  
+  
+ }
