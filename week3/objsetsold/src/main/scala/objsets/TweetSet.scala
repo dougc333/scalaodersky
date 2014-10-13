@@ -175,7 +175,7 @@ class NonEmpty(elem: Tweet, left: TweetSet, right: TweetSet) extends TweetSet {
     if (tw.text < elem.text) new NonEmpty(elem, left.remove(tw), right)
     else if (elem.text < tw.text) new NonEmpty(elem, left, right.remove(tw))
     else {
-      println("NonEmpty remove ")
+      //println("NonEmpty remove ")
       left.union(right)
     }
 

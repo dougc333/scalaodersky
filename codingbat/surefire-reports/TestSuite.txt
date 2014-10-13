@@ -1,21 +1,17 @@
-[36mRun starting. Expected test count is: 1[0m
+[36mRun starting. Expected test count is: 9[0m
 [32mDiscoverySuite:[0m
-[32mTestNettyClientSuite:[0m
-[31m- test connections *** FAILED ***[0m
-[31m  java.lang.IllegalStateException: Trying to access the future did timeout after 5 seconds[0m
-[31m  at com.example.memcached.TestNettyClientSuite.await(TestNettyClientSuite.scala:37)[0m
-[31m  at com.example.memcached.TestNettyClientSuite$$anonfun$1.apply$mcV$sp(TestNettyClientSuite.scala:19)[0m
-[31m  at com.example.memcached.TestNettyClientSuite$$anonfun$1.apply(TestNettyClientSuite.scala:14)[0m
-[31m  at com.example.memcached.TestNettyClientSuite$$anonfun$1.apply(TestNettyClientSuite.scala:14)[0m
-[31m  at org.scalatest.FunSuite$$anon$1.apply(FunSuite.scala:1465)[0m
-[31m  at org.scalatest.Suite$class.withFixture(Suite.scala:1099)[0m
-[31m  at com.example.memcached.TestNettyClientSuite.withFixture(TestNettyClientSuite.scala:12)[0m
-[31m  at org.scalatest.FunSuite$class.invokeWithFixture$1(FunSuite.scala:1462)[0m
-[31m  at org.scalatest.FunSuite$$anonfun$runTest$1.apply(FunSuite.scala:1474)[0m
-[31m  at org.scalatest.FunSuite$$anonfun$runTest$1.apply(FunSuite.scala:1474)[0m
-[31m  ...[0m
-[36mRun completed in 6 seconds, 578 milliseconds.[0m
-[36mTotal number of tests run: 1[0m
+[32mLinkedListSuite:[0m
+[32m- test[0m
+[32m- test foreach[0m
+[32m- test cons[0m
+[32m- test map[0m
+[32m- test reverse[0m
+[32m- test foldRight[0m
+[32m- test filter[0m
+[32m- test foldLeft[0m
+[32m- test find[0m
+[36mRun completed in 573 milliseconds.[0m
+[36mTotal number of tests run: 9[0m
 [36mSuites: completed 2, aborted 0[0m
-[36mTests: succeeded 0, failed 1, canceled 0, ignored 0, pending 0[0m
-[31m*** 1 TEST FAILED ***[0m
+[36mTests: succeeded 9, failed 0, canceled 0, ignored 0, pending 0[0m
+[32mAll tests passed.[0m
