@@ -10,7 +10,7 @@
 [32m- test filter[0m
 [32m- test foldLeft[0m
 [32m- test find[0m
-[36mRun completed in 573 milliseconds.[0m
+[36mRun completed in 726 milliseconds.[0m
 [36mTotal number of tests run: 9[0m
 [36mSuites: completed 2, aborted 0[0m
 [36mTests: succeeded 9, failed 0, canceled 0, ignored 0, pending 0[0m
