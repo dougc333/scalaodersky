@@ -1,5 +1,6 @@
 package patmat
 
+
 import org.scalatest.FunSuite
 
 import org.junit.runner.RunWith
@@ -13,12 +14,13 @@ class HuffmanSuite extends FunSuite {
     val t1 = Fork(Leaf('a',2), Leaf('b',3), List('a','b'), 5)
     val t2 = Fork(Fork(Leaf('a',2), Leaf('b',3), List('a','b'), 5), Leaf('d',4), List('a','b','d'), 9)
     val t3 = List('d','d','d','d','a','a','b','b','b')
-    val t4=List('a','a','b','b','b')
+    val t4 = List('a','a','b','b','b')
   }
 
   test("weight of a larger tree") {
     new TestTrees {
       assert(weight(t1) === 5)
+      assert(weight(t2)===9)
     }
   }
 
@@ -114,23 +116,22 @@ class HuffmanSuite extends FunSuite {
   }
   
   test("encode"){
-    
-    //val e=encode(Fork(Leaf('a',2),Leaf('b',3),List('a', 'b'),5))(List('b', 'a', 'b', 'a', 'b', 'a'))
-    //assert(e===List(1,0,1,0,1,0))
+    val e=encode(Fork(Leaf('a',2),Leaf('b',3),List('a', 'b'),5))(List('b', 'a', 'b', 'a', 'b', 'a'))
+    assert(e===List(1,0,1,0,1,0))
   }
   test("encode1"){
-    //val e=encode(Leaf('a',2))(List('b', 'a', 'b', 'a', 'b', 'a'))
-    //assert(e===List())
+    val e=encode(Leaf('a',2))(List('b', 'a', 'b', 'a', 'b', 'a'))
+    assert(e===List())
   }
 
   test("encode2"){
-    //val e=encode(Leaf('b',2))(List('b', 'a', 'b', 'a', 'b', 'a'))
-    //assert(e===List())
+    val e=encode(Leaf('b',2))(List('b', 'a', 'b', 'a', 'b', 'a'))
+    assert(e===List())
   }
   
   
   test("decode"){
-   val d = decode(Fork(Leaf('a',2),Leaf('b',3),List('a', 'b'),5),List(0,1,0,1,0,1)) 
+   val d = decode(Fork(Leaf('a',2),Leaf('b',3),List('a', 'b'),5),List(1,0,1,0,1,0)) 
    assert(d===List('b', 'a', 'b', 'a','b', 'a'))
   }
   

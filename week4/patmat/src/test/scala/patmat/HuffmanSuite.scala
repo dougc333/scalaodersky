@@ -17,6 +17,7 @@ class HuffmanSuite extends FunSuite {
   test("weight of a larger tree") {
     new TestTrees {
       assert(weight(t1) === 5)
+      assert(weight(t2) === 9)
     }
   }
 
@@ -43,6 +44,7 @@ class HuffmanSuite extends FunSuite {
     val e=encode(Fork(Leaf('a',2),Leaf('b',3),List('a', 'b'),5))(List('b', 'a', 'b', 'a', 'b', 'a'))
     assert(e===List(1,0,1,0,1,0))
   }
+
   test("encode1"){
     val e=encode(Leaf('a',2))(List('b', 'a', 'b', 'a', 'b', 'a'))
     assert(e===List())
@@ -65,27 +67,27 @@ class HuffmanSuite extends FunSuite {
   }
 
 
-// test("decode"){
-//   val d = decode(Fork(Leaf('a',2),Leaf('b',3),List('a', 'b'),5),List(0,1,0,1,0,1))
-//   assert(d===List('b', 'a', 'b', 'a','b', 'a'))
-//  }
+ test("decode"){
+   val d = decode(Fork(Leaf('a',2),Leaf('b',3),List('a', 'b'),5),List(0,1,0,1,0,1))
+   assert(d===List('a', 'b', 'a', 'b','a', 'b'))
+  }
 
 test("quickencode") {
     assert(quickEncode(frenchCode)(decodedSecret)===secret)
   }
 
-// test("test french secret"){
-//    val decodeSecret = decodedSecret
-//    println("decodedSecret:"+decodedSecret);
-//    assert (decodedSecret==List('h', 'u', 'f', 'f', 'm', 'a', 'n', 'e', 's', 't', 'c', 'o', 'o', 'l'))
-//  }
+ test("test french secret"){
+    val decodeSecret = decodedSecret
+    println("decodedSecret:"+decodedSecret);
+    assert (decodedSecret==List('h', 'u', 'f', 'f', 'm', 'a', 'n', 'e', 's', 't', 'c', 'o', 'o', 'l'))
+  }
 
-/**
+
   //problem with encode/decode
   test("decode and encode a very short text should be identity") {
     new TestTrees {
       assert(decode(t1, encode(t1)("ab".toList)) === "ab".toList)
     }
   }
-*/
+
 }
